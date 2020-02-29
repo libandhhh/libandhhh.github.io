@@ -2,6 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <!--prettify代码高亮主题css引入-->
+  <link href="/plugins/prettify/prettify.css" rel="stylesheet">
   
   
   <meta name="description" content="大二学生,开源爱好者,平时喜欢谢谢blog,欢迎交流,qq:486859916" />
@@ -23,7 +25,7 @@
 <meta property="og:description" content="内容简介 : 蓝桥杯历年题目     试题内容  —   带分数 100100 可以表示为带分数的形式：100&#x3D;3+69258714100&#x3D;3+69258714 还可以表示为：100&#x3D;82+3546197100&#x3D;82+3546197 注意特征：带分数中，数字 1∼91∼9 分别出现且只出现一次（不包含 00）。 类似这样的带分数，100100 有 1111 种表示法。 输入格式一个正整数。 输出格">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-29T06:37:18.169Z">
-<meta property="article:modified_time" content="2020-02-29T06:53:47.056Z">
+<meta property="article:modified_time" content="2020-02-29T09:55:09.690Z">
 <meta property="article:author" content="guaokuangsheng">
 <meta property="article:tag" content="递归">
 <meta property="article:tag" content="dfs搜索">
@@ -111,10 +113,10 @@
 <ul>
 <li>我的代码</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
 using namespace std;
 const int N = 10; //枚举10位数
 typedef long long LL;
@@ -140,7 +142,7 @@ bool check(int a,int c)
        backup[x] = true;
     }
     //判断是否每一个都有用到
-    for(int i = 1;i <= 9; i++)
+    for(int i = 1;i &lt;= 9; i++)
         if(!backup[i])
             return false;
 
@@ -152,7 +154,7 @@ void dfs_c(int u,int a,int c)
     //通过 a 和 c 来算出 b
     if(check(a,c)) ans ++; //通过 a c 来判断是否符合
 
-    for(int i = 1; i <= 9; i++)
+    for(int i = 1; i &lt;= 9; i++)
     {
         if(!st[i])
         {
@@ -165,11 +167,11 @@ void dfs_c(int u,int a,int c)
 
 void dfs_a(int u,int a)
 {
-    if(a >= n) return;
+    if(a &gt;= n) return;
     if(a)  dfs_c(u,a,0);  //对于枚举好的a来说 依次进行枚举 c
 
     //对于a进行每一位的枚举
-    for(int i = 1; i <= 9; i++)
+    for(int i = 1; i &lt;= 9; i++)
     {
         if(!st[i])
         {
@@ -182,12 +184,11 @@ void dfs_a(int u,int a)
 }
 int main()
 {
-    cin >> n;
+    cin &gt;&gt; n;
     dfs_a(0,0);
-    cout << ans << endl;
+    cout &lt;&lt; ans &lt;&lt; endl;
     return 0;
-}</code></pre>
-<hr>
+}</code></pre><hr>
 
       
     </div><!-- .entry-content -->
@@ -358,6 +359,14 @@ int main()
 
 <div id="bg"></div>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
   </div>
 </body>
 </html>

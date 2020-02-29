@@ -1031,6 +1031,16 @@ article.sticky .featured-post {
     -webkit-border-radius: 0;
     border-radius: 0;
 }
+
+pre.prettyprint{
+	padding-left: 20px;
+}
+pre{
+	background-color: #f1fcfc;
+    word-break: break-all!important;
+    word-wrap: break-word!important;
+}
+
 .entry-content abbr,
 .comment-content abbr,
 .entry-content dfn,

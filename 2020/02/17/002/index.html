@@ -2,6 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <!--prettify代码高亮主题css引入-->
+  <link href="/plugins/prettify/prettify.css" rel="stylesheet">
   
   
   <meta name="description" content="大二学生,开源爱好者,平时喜欢谢谢blog,欢迎交流,qq:486859916" />
@@ -287,6 +289,14 @@ $ git push -u origin master --上传文件</code></pre><p>还有很多的git指�
 
 <div id="bg"></div>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
   </div>
 </body>
 </html>
