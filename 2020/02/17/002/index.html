@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="大二学生,开源爱好者,平时喜欢谢谢blog,欢迎交流,qq:486859916" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Git常见的指令操作 | 人生小谈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="内容简介 : 学习git的常规操作1.对于一个初始化的项目来说我们使用git来管理进行版本操作是十分简易便捷的,对于大多数的大型管理应用来说,git这种版本工具十分适合大型企业的项目维护,因此gitgub作为最大的代码平台也因此吸引了许许多多的企业甚至大牛,营造了如今十分火热的生态圈,学会使用git的基本操作对开发人员来说,是必不可少的一项技能,言归正传,我们拿到一个项目如何进行管理。  2.项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常见的指令操作">
+<meta property="og:url" content="http://www.harry.org.cn/2020/02/17/002/index.html">
+<meta property="og:site_name" content="人生小谈">
+<meta property="og:description" content="内容简介 : 学习git的常规操作1.对于一个初始化的项目来说我们使用git来管理进行版本操作是十分简易便捷的,对于大多数的大型管理应用来说,git这种版本工具十分适合大型企业的项目维护,因此gitgub作为最大的代码平台也因此吸引了许许多多的企业甚至大牛,营造了如今十分火热的生态圈,学会使用git的基本操作对开发人员来说,是必不可少的一项技能,言归正传,我们拿到一个项目如何进行管理。  2.项目">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-16T17:10:29.549Z">
+<meta property="article:modified_time" content="2020-02-17T10:14:31.043Z">
+<meta property="article:author" content="guaokuangsheng">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="人生小谈" rel="home">人生小谈</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">主页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">所有文章</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/tags">tags</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-002" class="post-002 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Git常见的指令操作
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/17/002/" data-id="ck77athok0005o6kjeg9a8eqy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h2 id="内容简介-学习git的常规操作"><a href="#内容简介-学习git的常规操作" class="headerlink" title="内容简介 : 学习git的常规操作"></a><em>内容简介</em> : 学习git的常规操作</h2><p>1.对于一个初始化的项目来说我们使用git来管理进行版本操作是十分简易便捷的,对于大多数的大型管理应用来说,git这种版本工具十分适合大型企业的项目维护,因此gitgub作为最大的代码平台也因此吸引了许许多多的企业甚至大牛,营造了如今十分火热的生态圈,学会使用git的基本操作对开发人员来说,是必不可少的一项技能,言归正传,我们拿到一个项目如何进行管理。</p>
+<hr>
+<p>2.项目起手</p>
+<p>2.1在本地进行创建本地仓库 </p>
+<pre class=" language-json"><code class="language-json">$ git init --创建一个当地的维护仓库</code></pre>
+<p>2.2将要上传的项目进行添加草版本库之中</p>
+<pre class=" language-json"><code class="language-json">$ git add . -- 默认将所有的文件添加到缓存区之中
+$ git add &lt;file name>  -- 将指定默认的文件添加到缓存区中</code></pre>
+<p>2.3进行第一次提交 书写合适的提交信息</p>
+<pre><code>$ git commit -m &quot;我的第一次提交&quot;</code></pre><p>2.4进行远程连接</p>
+<pre><code>$ git remote add origin SSH -- 这里的SSH就是连接仓库的秘钥,在github的仓库里就能找到</code></pre><p>2.5.进行推送</p>
+<pre><code>$ git push -u origin master -- 推送到仓库默认的master分支里面去</code></pre><hr>
+<p>3.项目维护与更新</p>
+<p>直接上操作</p>
+<pre><code>$ cd text --进入上传的文件夹
+$ git add . --添加文件
+$ git commit -m &quot;第二次提交&quot;
+$ git pull origin master  --拉取分支
+$ git push -u origin master --上传文件</code></pre><p>还有很多的git指令可以使用 git -help来进行查询查看即可</p>
+<hr>
+<p>4.自己使用的错误要点:</p>
+<p>自己搭建的hexo博客是自动生成静态文件,并且也是挂载到github上面的,但是由于对git的工作运行理念了解的不清楚,导致在第一次提交后打算进行更新远程仓库时候,居然无脑的把自己的public文件删掉了,重新来了一遍hexo g生成,这样导致本地仓库与远程仓库的时间不一致的问题使得无法进行pull操作,导致merge也错误了。因此多使用git操作一定是会提升以后的工作开发效率的孰能生巧鸭。</p>
+<hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/02/17/002/">
+    <time datetime="2020-02-16T17:10:29.549Z" class="entry-date">
+        2020-02-17
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2020/02/17/003/" rel="prev"><span class="meta-nav">←</span> 搭建博客遇到的坑点</a></span>
+    
+    
+        <span class="nav-next"><a href="/2020/02/16/001/" rel="next">Mac之中如何解决安装问题 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80ODY2Ni8yNTE2MA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 --></div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">tagcloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/mac/" style="font-size: 23px; color: #f00">mac</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 13px; color: #90f">love💗</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 13px; color: #90f">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 13px; color: #90f">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a>
+    </div>
+  </div>
+
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/29/008/">蓝桥杯--带分数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/19/007/">翻墙方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/19/006/">atom奇遇记(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/19/005/">爱的蜜饯</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/17/004/">mac之中内存管理机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="https://webfs.yun.kugou.com/202002191343/d69b2985af77e2cef58fbd94cd3edcae/G011/M08/01/08/q4YBAFULduiAb4AlAChLgMDVxOg551.mp3" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <p>&copy; 2020 guaokuangsheng
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+    <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="大二学生,开源爱好者,平时喜欢谢谢blog,欢迎交流,qq:486859916" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>搭建博客遇到的坑点 | 人生小谈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="内容简介 : 记录自己搭建博客遇到的坑点以及建议  搭建的第一次博客,感到十分无力鸭,踩过的坑是在太多了. 1.第一次下载hexo的主题文件时候,虽然在本地端口4000成功跑起来了,但是还是十分无脑。使用命令行十分生疏。建议后来者多看看hexo官方的doc，以便可以更好的避过坑点。(附上官方链接: https:&#x2F;&#x2F;hexo.io&#x2F;)  2.先跑起来再说,对于theme的选择要合适,建议多选择生态圈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建博客遇到的坑点">
+<meta property="og:url" content="http://www.harry.org.cn/2020/02/17/003/index.html">
+<meta property="og:site_name" content="人生小谈">
+<meta property="og:description" content="内容简介 : 记录自己搭建博客遇到的坑点以及建议  搭建的第一次博客,感到十分无力鸭,踩过的坑是在太多了. 1.第一次下载hexo的主题文件时候,虽然在本地端口4000成功跑起来了,但是还是十分无脑。使用命令行十分生疏。建议后来者多看看hexo官方的doc，以便可以更好的避过坑点。(附上官方链接: https:&#x2F;&#x2F;hexo.io&#x2F;)  2.先跑起来再说,对于theme的选择要合适,建议多选择生态圈">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-16T18:40:30.778Z">
+<meta property="article:modified_time" content="2020-02-17T10:32:37.478Z">
+<meta property="article:author" content="guaokuangsheng">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="人生小谈" rel="home">人生小谈</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">主页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">所有文章</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/tags">tags</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-003" class="post-003 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      搭建博客遇到的坑点
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/17/003/" data-id="ck77atho30000o6kj2ll69mcy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p><em>内容简介</em> : 记录自己搭建博客遇到的坑点以及建议</p>
+<hr>
+<h3 id="搭建的第一次博客-感到十分无力鸭-踩过的坑是在太多了"><a href="#搭建的第一次博客-感到十分无力鸭-踩过的坑是在太多了" class="headerlink" title="搭建的第一次博客,感到十分无力鸭,踩过的坑是在太多了."></a>搭建的第一次博客,感到十分无力鸭,踩过的坑是在太多了.</h3><hr>
+<p>1.第一次下载hexo的主题文件时候,虽然在本地端口4000成功跑起来了,但是还是十分无脑。使用命令行十分生疏。建议后来者多看看hexo官方的doc，以便可以更好的避过坑点。(附上官方链接: <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a>)</p>
+<hr>
+<p>2.先跑起来再说,对于theme的选择要合适,建议多选择生态圈比较繁荣的theme主体,这样在遇到问题的时候可以更加方便查找,省去很多的力气等等。</p>
+<hr>
+<p>3.没有看懂hexo的生成文件是另一大痛点,由于模块化的组装方式,hexo里面很多的文件都是.ejs的js模板文件,对会一些前端的朋友还是比较友好的。最好搞清楚hexo的文件架构以便可以进行个性化的定制操作。建议了解一下ejs的语法,这样就能更加得心应手的看懂代码了。(附上ejs官方链接: <a href="https://ejs.bootcss.com/" target="_blank" rel="noopener">https://ejs.bootcss.com/</a>)</p>
+<hr>
+<p>4.自己还很无脑的不知道如何进行插件查询和使用,小编自己使用过的一个hexo-tagcloud标签云插件就很无脑,记得要在自己写的md文件中加上categories分类和tags这样就可以使用了,不要无脑进行查找。(附上hexo插件的链接: <a href="https://hexo.io/plugins/" target="_blank" rel="noopener">https://hexo.io/plugins/</a>)</p>
+<hr>
+<p>5.还有使用一个统建站点访问记录的一个插件,详情请见不蒜子的博客,很方便的哦,但是不要在本地跑,本地跑会失灵的。</p>
+<hr>
+<p>6.说在后面: 万事开头难,坚持才能行得通哦。</p>
+<p>[Start the road is blog!!!]</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/02/17/003/">
+    <time datetime="2020-02-16T18:40:30.778Z" class="entry-date">
+        2020-02-17
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2020/02/17/004/" rel="prev"><span class="meta-nav">←</span> mac之中内存管理机制</a></span>
+    
+    
+        <span class="nav-next"><a href="/2020/02/17/002/" rel="next">Git常见的指令操作 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80ODY2Ni8yNTE2MA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 --></div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">tagcloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/mac/" style="font-size: 23px; color: #f00">mac</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 13px; color: #90f">love💗</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 13px; color: #90f">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 13px; color: #90f">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a>
+    </div>
+  </div>
+
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/29/008/">蓝桥杯--带分数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/19/007/">翻墙方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/19/006/">atom奇遇记(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/19/005/">爱的蜜饯</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/17/004/">mac之中内存管理机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="https://webfs.yun.kugou.com/202002191343/d69b2985af77e2cef58fbd94cd3edcae/G011/M08/01/08/q4YBAFULduiAb4AlAChLgMDVxOg551.mp3" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <p>&copy; 2020 guaokuangsheng
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+    <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
