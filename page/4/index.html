@@ -72,6 +72,658 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-011" class="post-011 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/03/11/011/">蓝桥杯--小计算器</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/03/11/011/" data-id="ck7n5qr4i00009hkjf93xfyzf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 蓝桥杯历年题目  </p>
+<hr>
+<ul>
+<li>试题内容  —   小计算器</li>
+</ul>
+<p>资源限制</p>
+<p>时间限制：1.0s  内存限制：256.0MB</p>
+<p>问题描述</p>
+<p>　　模拟程序型计算器，依次输入指令，可能包含的指令有</p>
+<p>　　1. 数字：’NUM X’，X为一个只包含大写字母和数字的字符串，表示一个当前进制的数<br>　　2. 运算指令：’ADD’,’SUB’,’MUL’,’DIV’,’MOD’，分别表示加减乘，除法取商，除法取余<br>　　3. 进制转换指令：’CHANGE K’，将当前进制转换为K进制(2≤K≤36)<br>　　4. 输出指令：’EQUAL’，以当前进制输出结果<br>　　5. 重置指令：’CLEAR’，清除当前数字</p>
+<p>　　指令按照以下规则给出：<br>　　数字，运算指令不会连续给出，进制转换指令，输出指令，重置指令有可能连续给出<br>　　运算指令后出现的第一个数字，表示参与运算的数字。且在该运算指令和该数字中间不会出现运算指令和输出指令<br>　　重置指令后出现的第一个数字，表示基础值。且在重置指令和第一个数字中间不会出现运算指令和输出指令<br>　　进制转换指令可能出现在任何地方</p>
+<p>　　运算过程中中间变量均为非负整数，且小于2^63。<br>　　以大写的’A’<del>‘Z’表示10</del>35</p>
+<p>输入格式</p>
+<p>　　第1行：1个n，表示指令数量<br>　　第2..n+1行：每行给出一条指令。指令序列一定以’CLEAR’作为开始，并且满足指令规则</p>
+<p>输出格式</p>
+<p>　　依次给出每一次’EQUAL’得到的结果</p>
+<p>样例输入</p>
+<pre class=" language-7"><code class="language-7">7
+CLEAR
+NUM 1024
+CHANGE 2
+ADD
+NUM 100000
+CHANGE 8
+EQUAL```</code></pre>
+<p>样例输出</p>
+<pre><code>2040</code></pre><hr>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdio&gt;
+#include &lt;cmath&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+long long sum;
+int base = 10; //代表的是进制数
+long long myread()
+{
+    string str;
+    cin &gt;&gt; str;
+    long long val = 0;
+    for(int i = 0; i &lt; str.size(); i++)
+    {
+        long long temp;
+        if(isdigit(str[i]))
+        {
+            temp = str[i] - &#39;0&#39;;
+        }else{
+            temp = str[i] - &#39;A&#39; + 10;
+        }
+        val = val * base + temp;
+    }
+    return val;
+}
+//在输出功能函数中进行转化
+
+void myoutput()
+{
+    //k进制转化操作
+    long long val = sum; //先进行赋值
+    vector&lt;char&gt; v;
+    while(sum){
+        long long val = sum % base;
+        if(val &lt;= 9){
+            v.push_back(val + &#39;0&#39;);
+        }else{
+            v.push_back(val - 10 + &#39;A&#39;);
+        }
+        sum /= base;
+    }
+    if(v.size() == 0)
+    {
+        cout &lt;&lt; 0;
+    }
+    for(int i = v.size()-1; i &gt;= 0; i --)
+    {
+        cout &lt;&lt; v[i];
+    }
+    cout &lt;&lt; endl;
+}
+
+int main()
+{
+    int n; //代表的是n个指令操作
+    cin &gt;&gt; n;
+    string op; //代表每一行指令操作
+    int opt;   //转化成具体的指令个数
+    while (n--)
+    {
+        cin &gt;&gt; op;
+        if (op == &quot;CLEAR&quot;)
+            opt = sum = 0;
+        else if (op == &quot;ADD&quot;)
+            opt = 1; //加上
+        else if (op == &quot;SUB&quot;)
+            opt = 2; //减去
+        else if (op == &quot;MUL&quot;)
+            opt = 3; //乘法
+        else if (op == &quot;DIV&quot;)
+            opt = 4; //除法
+        else if (op == &quot;MOD&quot;)
+            opt = 5; //取余数操作
+        else if (op == &quot;CHANGE&quot;)
+            cin &gt;&gt; base; //换取得base进制数
+        else if (op == &quot;EQUAL&quot;)
+            myoutput();
+        else if (op == &quot;NUM&quot;)
+        {
+            switch (opt)
+            {
+            case 0:
+                sum = myread();
+                break;
+            case 1:
+                sum += myread();
+                break;
+            case 2:
+                sum -= myread();
+                break;
+            case 3:
+                sum *= myread();
+                break;
+            case 4:
+                sum /= myread();
+                break;
+            case 5:
+                sum %= myread();
+                break;
+            }
+        }
+    }
+    return 0;
+}</code></pre><hr>
+<h4 id="补充算法程序-—–-k-进制算法（基础）"><a href="#补充算法程序-—–-k-进制算法（基础）" class="headerlink" title="补充算法程序 —– k 进制算法（基础）"></a>补充算法程序 —– k 进制算法（基础）</h4><p>输入: num 和 k  转化成对应的k进制数 ( 2&lt;=k &amp;&amp; k &lt;= 34)</p>
+<p>详细代码如下:</p>
+<p>Tips: 默认的话num是输入的是10进制数</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+long long num;//任意输入一个10进制数
+int base = 10;//默认是10进制数
+
+void fun(long long num,int base)
+{
+    long long val = 0;
+    vector&lt;char&gt; v; //使用vector进行存储
+
+    while(num){ //循环相除法
+        long long val = num % base;
+        if(val &lt;= 9){
+            v.push_back(val + &#39;0&#39;);
+        }else{
+            v.push_back(val - 10 + &#39;A&#39;);
+        }
+        num /= base;
+    }
+    if(v.size() == 0)
+    {
+        cout &lt;&lt; 0;
+    }
+    for(int i = v.size()-1; i &gt;= 0; i --)
+    {
+        cout &lt;&lt; v[i];
+    }
+    cout &lt;&lt; endl;
+}
+
+int main()
+{
+    cin &gt;&gt; num &gt;&gt; base;
+    fun(num,base);
+    return 0;
+}</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/03/11/011/">
+    <time datetime="2020-03-11T09:35:59.082Z" class="entry-date">
+        2020-03-11
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-010" class="post-010 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/02/29/010/">蓝桥杯--正则问题</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/010/" data-id="ck77jifzm0001oekj0rkmg776" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 蓝桥杯历年题目  </p>
+<hr>
+<ul>
+<li>试题内容  —   正则问题</li>
+</ul>
+<p>考虑一种简单的正则表达式：</p>
+<p>只由 x ( ) | 组成的正则表达式。</p>
+<p>小明想求出这个正则表达式能接受的最长字符串的长度。</p>
+<p>例如 ((xx|xxx)x|(x|xx))xx 能接受的最长字符串是： xxxxxx，长度是6。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>一个由x()|组成的正则表达式。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出所给正则表达式能接受的最长字符串的长度。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>输入长度不超过100，保证合法。</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>((xx|xxx)x|(x|xx))xx </code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>6</code></pre><hr>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+using namespace std;
+string str;
+int k;
+int dfs()
+{
+    int res = 0;
+
+    while(k &lt; str.size())
+    {
+        if(str[k] == &#39;(&#39;)
+        {
+            k++;  //跳过左括号
+            res += dfs();
+            k++;  //跳过右括号
+        }
+        else if(str[k] == &#39;|&#39;)
+        {
+            k++; //跳过这个与符号
+            res = max(res,dfs());
+        }else if(str[k] == &#39;)&#39;)
+        {
+            break;
+        }else{
+            k ++; //跳过了 &#39;x&#39;
+            res ++;
+        }
+    }    
+    return res;
+}
+
+int main()
+{
+    cin &gt;&gt; str;
+
+    cout &lt;&lt; dfs() &lt;&lt; endl;
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/02/29/010/">
+    <time datetime="2020-02-29T11:43:22.153Z" class="entry-date">
+        2020-02-29
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-009" class="post-009 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/02/29/009/">蓝桥杯--最大比例</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/009/" data-id="ck77jifzb0000oekj30c6afhs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 蓝桥杯历年题目  </p>
+<hr>
+<ul>
+<li><p>试题内容  —   最大比例</p>
+<p>X星球的某个大奖赛设了 MM 级奖励。</p>
+<p>每个级别的奖金是一个正整数。</p>
+<p>并且，相邻的两个级别间的比例是个固定值。</p>
+<p>也就是说：所有级别的奖金数构成了一个等比数列。</p>
+<p>比如：16,24,36,5416,24,36,54，其等比值为：3/23/2。</p>
+<p>现在，我们随机调查了一些获奖者的奖金数。</p>
+<p>请你据此推算可能的最大的等比值。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行为数字 NN ，表示接下的一行包含 NN 个正整数。</p>
+<p>第二行 NN 个正整数 XiXi，用空格分开，每个整数表示调查到的某人的奖金数额。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>一个形如 A/BA/B 的分数，要求 A、BA、B 互质，表示可能的最大比例系数。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>0&lt;N&lt;1000&lt;N&lt;100<br>0&lt;Xi&lt;10120&lt;Xi&lt;1012<br>数据保证一定有解。</p>
+<h4 id="输入样例1："><a href="#输入样例1：" class="headerlink" title="输入样例1："></a>输入样例1：</h4><pre><code>3
+1250 200 32</code></pre><h4 id="输出样例1："><a href="#输出样例1：" class="headerlink" title="输出样例1："></a>输出样例1：</h4><pre><code>25/4</code></pre><h4 id="输入样例2："><a href="#输入样例2：" class="headerlink" title="输入样例2："></a>输入样例2：</h4><pre><code>4
+3125 32 32 200</code></pre><h4 id="输出样例2："><a href="#输出样例2：" class="headerlink" title="输出样例2："></a>输出样例2：</h4><pre><code>5/2</code></pre><h4 id="输入样例3："><a href="#输入样例3：" class="headerlink" title="输入样例3："></a>输入样例3：</h4><pre><code>3
+549755813888 524288 2</code></pre><h4 id="输出样例3："><a href="#输出样例3：" class="headerlink" title="输出样例3："></a>输出样例3：</h4><pre><code>4/1</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>我的代码</li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 110;
+typedef long long LL;
+LL x[N],a[N],b[N];
+int n;
+
+//辗转相减法
+LL gcd(LL a,LL b)
+{
+    return b ? gcd(b,a%b) : a; 
+}
+//更相减损术
+LL gcd_sub(LL a,LL b)
+{
+    if(a &lt; b) swap(a,b);
+    if(b == 1) return a;
+    return gcd_sub(b,a/b);
+}
+
+int main()
+{
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i++)
+    {
+        cin &gt;&gt; x[i];
+    }
+    sort(x, x + n);
+    int cnt = 0;
+    for(int i = 1; i &lt; n; i++)
+    {
+        if(x[i] != x[i - 1])
+        {
+            LL d = gcd(x[i],x[0]);
+            a[cnt] = x[i] / d;
+            b[cnt] = x[0] / d;
+            cnt ++;
+        }
+    }
+
+    LL up = a[0],down = b[0];
+
+    for(int i = 1; i &lt; cnt; i++)
+    {
+        up = gcd_sub(up,a[i]);
+        down = gcd_sub(down,b[i]);
+    }
+    cout &lt;&lt; up &lt;&lt; &quot;/&quot; &lt;&lt; down &lt;&lt; endl;
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/02/29/009/">
+    <time datetime="2020-02-29T10:51:53.126Z" class="entry-date">
+        2020-02-29
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-008" class="post-008 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/02/29/008/">蓝桥杯--带分数</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/008/" data-id="ck77athor000bo6kj1mkudlw9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 蓝桥杯历年题目  </p>
+<hr>
+<ul>
+<li><p>试题内容  —   带分数</p>
+<p>100100 可以表示为带分数的形式：100=3+69258714100=3+69258714</p>
+<p>还可以表示为：100=82+3546197100=82+3546197</p>
+<p>注意特征：带分数中，数字 1∼91∼9 分别出现且只出现一次（不包含 00）。</p>
+<p>类似这样的带分数，100100 有 1111 种表示法。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>一个正整数。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出输入数字用数码 1∼91∼9 不重复不遗漏地组成带分数表示的全部种数。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤N&lt;106</p>
+<h4 id="输入样例1："><a href="#输入样例1：" class="headerlink" title="输入样例1："></a>输入样例1：</h4><pre><code>100</code></pre><h4 id="输出样例1："><a href="#输出样例1：" class="headerlink" title="输出样例1："></a>输出样例1：</h4><pre><code>11</code></pre><h4 id="输入样例2："><a href="#输入样例2：" class="headerlink" title="输入样例2："></a>输入样例2：</h4><pre><code>105</code></pre><h4 id="输出样例2："><a href="#输出样例2：" class="headerlink" title="输出样例2："></a>输出样例2：</h4><pre><code>6</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>我的代码</li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 10; //枚举10位数
+typedef long long LL;
+
+int n;
+bool st[N],backup[N];
+int ans;
+
+bool check(int a,int c)
+{
+    //直接算出b的值就好了   考虑到c是八位数 因此和c相乘的话可能会爆掉int
+    LL b = n * (LL) c - a * c;
+
+    //特殊判断一下  看一下是否有没有找到的  保证每一位都要有的
+    if(!a || !b || !c) return false;
+    memcpy(backup,st, sizeof st); //搞一个特判数组 看是否满足
+    //拿出 b 的每一位看一看是否满足没有查询到的操作
+    while(b)
+    {
+       int x =  b % 10; //一直拿掉b的最后一位
+       b /= 10;
+       if( !x || backup[x] ) return false;
+       backup[x] = true;
+    }
+    //判断是否每一个都有用到
+    for(int i = 1;i &lt;= 9; i++)
+        if(!backup[i])
+            return false;
+
+    return true;
+}
+
+void dfs_c(int u,int a,int c)
+{
+    //通过 a 和 c 来算出 b
+    if(check(a,c)) ans ++; //通过 a c 来判断是否符合
+
+    for(int i = 1; i &lt;= 9; i++)
+    {
+        if(!st[i])
+        {
+            st[i] = true;
+            dfs_c(u+1,a,c * 10 + i);
+            st[i] = false; //恢复现场
+        }
+    }
+}
+
+void dfs_a(int u,int a)
+{
+    if(a &gt;= n) return;
+    if(a)  dfs_c(u,a,0);  //对于枚举好的a来说 依次进行枚举 c
+
+    //对于a进行每一位的枚举
+    for(int i = 1; i &lt;= 9; i++)
+    {
+        if(!st[i])
+        {
+            st[i] = true;
+            dfs_a(u + 1,a * 10 + i);
+            st[i] = false;
+        }
+    }
+
+}
+int main()
+{
+    cin &gt;&gt; n;
+    dfs_a(0,0);
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/02/29/008/">
+    <time datetime="2020-02-29T06:37:18.169Z" class="entry-date">
+        2020-02-29
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-007" class="post-007 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/02/19/007/">翻墙方法</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/19/007/" data-id="ck77athot000fo6kjfmx6hpct" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : astar vpn插件 高速翻墙</p>
+<hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/02/19/007/">
+    <time datetime="2020-02-19T09:49:43.658Z" class="entry-date">
+        2020-02-19
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-006" class="post-006 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -146,10 +798,12 @@
 
     <div class="entry-content">
       
-        <hr>
-<h3 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h3><h6 id="Janim-今天吃了一颗糖-但是发现没那么高兴-因为你更甜。"><a href="#Janim-今天吃了一颗糖-但是发现没那么高兴-因为你更甜。" class="headerlink" title="Janim: 今天吃了一颗糖,但是发现没那么高兴,因为你更甜。"></a>Janim: 今天吃了一颗糖,但是发现没那么高兴,因为你更甜。</h6><h5 id="小强子-直到生命的尽头-也不能忘记青涩的岁月-破碎的记忆-有关于你的一切。"><a href="#小强子-直到生命的尽头-也不能忘记青涩的岁月-破碎的记忆-有关于你的一切。" class="headerlink" title="小强子: 直到生命的尽头,也不能忘记青涩的岁月,破碎的记忆,有关于你的一切。"></a>小强子: 直到生命的尽头,也不能忘记青涩的岁月,破碎的记忆,有关于你的一切。</h5><p><img src="/myimages/5.jpg" alt="avatar"></p>
-<hr>
-
+        The article has been encrypted, please enter your password to view.<br>
+        
+          <p class="article-more-link">
+            <a href="/2020/02/19/005/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
@@ -368,70 +1022,10 @@ $ git push -u origin master --上传文件</code></pre><p>还有很多的git指�
 
 
   
-    <article id="post-001" class="post-001 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/02/16/001/">Mac之中如何解决安装问题</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/16/001/" data-id="ck77athod0001o6kj4g01fjwv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h2 id="内容简介-对于很多mac新手以及很多使用win的大部分用户来说-mac相比于很多操作系统-除了超级舒适的操作系统-以及便捷的代码命令工具-也有很多让人头疼的地方-由于mac对于用户的安全保护性-往往可能不会识别一些不经过苹果开发团队认可的软件-但是我们用户又可能十分需要这些软件-因此就会出现无法安装的问题-因此-小编就安利一波解决方法"><a href="#内容简介-对于很多mac新手以及很多使用win的大部分用户来说-mac相比于很多操作系统-除了超级舒适的操作系统-以及便捷的代码命令工具-也有很多让人头疼的地方-由于mac对于用户的安全保护性-往往可能不会识别一些不经过苹果开发团队认可的软件-但是我们用户又可能十分需要这些软件-因此就会出现无法安装的问题-因此-小编就安利一波解决方法" class="headerlink" title="内容简介 : 对于很多mac新手以及很多使用win的大部分用户来说,mac相比于很多操作系统,除了超级舒适的操作系统,以及便捷的代码命令工具,也有很多让人头疼的地方,由于mac对于用户的安全保护性,往往可能不会识别一些不经过苹果开发团队认可的软件,但是我们用户又可能十分需要这些软件,因此就会出现无法安装的问题,因此,小编就安利一波解决方法"></a><em>内容简介</em> : 对于很多mac新手以及很多使用win的大部分用户来说,mac相比于很多操作系统,除了超级舒适的操作系统,以及便捷的代码命令工具,也有很多让人头疼的地方,由于mac对于用户的安全保护性,往往可能不会识别一些不经过苹果开发团队认可的软件,但是我们用户又可能十分需要这些软件,因此就会出现无法安装的问题,因此,小编就安利一波解决方法</h2><p> 1.找到系统偏好设置</p>
-<p> 打开安全性与隐私 (ps:快捷键是’commad+空格’直接搜索系统偏好设置即可)</p>
-<p><img src="/myimages/1.png" alt="avatar"></p>
-<hr>
-<hr>
-<p> 2.打开我的iterm(或者可以打开mac的终端)<br> 输入命令行:sudo spctl –master-disable (sudo代表的是进入管理员模式)<br> 这里输入的命令可以打开mac隐藏的任何来源的选项,这样就可以随心所欲的进行安装了,但是注意安全性哦！！！<br> <img src="/myimages/2.png" alt="avatar"></p>
-<hr>
-<p> 3.点开小锁图标,输入你的mac用户名和密码即可<br> <img src="/myimages/3.png" alt="avatar"><br> <img src="/myimages/4.png" alt="avatar"></p>
-<hr>
-<p> 4.点击任何来源就可以愉快的下载了。</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/02/16/001/">
-    <time datetime="2020-02-16T10:48:21.772Z" class="entry-date">
-        2020-02-16
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/" rel="tag">mac</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+        <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
       </nav>
     </nav>
   
@@ -450,7 +1044,7 @@ $ git push -u origin master --上传文件</code></pre><p>还有很多的git指�
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -469,7 +1063,7 @@ $ git push -u origin master --上传文件</code></pre><p>还有很多的git指�
   <aside class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">4</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">4</span></li></ul>
     </div>
   </aside>
 
@@ -481,23 +1075,23 @@ $ git push -u origin master --上传文件</code></pre><p>还有很多的git指�
       <ul>
         
           <li>
-            <a href="/2020/04/04/036/">爱的蜜饯---day24</a>
+            <a href="/2020/04/06/041/">爱的蜜饯---day28</a>
           </li>
         
           <li>
-            <a href="/2020/04/04/035/">爱的蜜饯---day23</a>
+            <a href="/2020/04/06/040/">爱的蜜饯---day27</a>
           </li>
         
           <li>
-            <a href="/2020/04/04/034/">爱的蜜饯---day22</a>
+            <a href="/2020/04/06/039/">爱的蜜饯---day26</a>
           </li>
         
           <li>
-            <a href="/2020/04/04/033/">爱的蜜饯---day21</a>
+            <a href="/2020/04/06/038/">爱的蜜饯---day25</a>
           </li>
         
           <li>
-            <a href="/2020/04/04/032/">爱的蜜饯---day20</a>
+            <a href="/2020/04/05/037/">react脚手架搭建错误</a>
           </li>
         
       </ul>
