@@ -72,7 +72,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-030" class="post-030 post type-post status-publish format-standard hentry">
+    <article id="post-049" class="post-049 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -80,14 +80,948 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/030/">爱的蜜饯---day18</a>
+      <a class="article-title" href="/2020/06/30/049/"> 那些js实现的算法和数据结构(一) </a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/030/" data-id="ckiwlefr5002ljwkja01gglir" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/06/30/049/" data-id="ckiwopq780042nlkjcpbbhnlf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="本专栏主要是记录博主自己使用js重构之前学习c-实现的一些算法和数据结构"><a href="#本专栏主要是记录博主自己使用js重构之前学习c-实现的一些算法和数据结构" class="headerlink" title="本专栏主要是记录博主自己使用js重构之前学习c++实现的一些算法和数据结构"></a>本专栏主要是记录博主自己使用js重构之前学习c++实现的一些算法和数据结构</h3><h4 id="1-基础的数组声明如下"><a href="#1-基础的数组声明如下" class="headerlink" title="1.基础的数组声明如下"></a>1.基础的数组声明如下</h4><pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> myarr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">+</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>a<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="2-基础的链表声明如下"><a href="#2-基础的链表声明如下" class="headerlink" title="2.基础的链表声明如下"></a>2.基础的链表声明如下</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//创建链表的结构</span>
+<span class="token comment" spellcheck="true">//相当于c/c++里面的结构体的概念</span>
+<span class="token comment" spellcheck="true">//泛化,使用对象表示链表每一个结构的构造</span>
+<span class="token keyword">const</span> listb <span class="token operator">=</span><span class="token punctuation">{</span>
+          value<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">,</span>
+            next <span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> lista <span class="token operator">=</span><span class="token punctuation">{</span>
+            value<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+            next<span class="token punctuation">:</span> listb
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>lista<span class="token punctuation">.</span>next<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//============下面使用函数式方法快速实现链表结构============</span>
+<span class="token comment" spellcheck="true">//函数式申明</span>
+<span class="token keyword">function</span> <span class="token function">Node</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//创建一些节点操作   </span>
+<span class="token keyword">const</span> my1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> my2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> my3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> my4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//构造节点之间的联系</span>
+my1<span class="token punctuation">.</span>next<span class="token operator">=</span> my2<span class="token punctuation">;</span>
+my2<span class="token punctuation">.</span>next<span class="token operator">=</span> my3<span class="token punctuation">;</span>
+my3<span class="token punctuation">.</span>next<span class="token operator">=</span> my4<span class="token punctuation">;</span>
+my4<span class="token punctuation">.</span>next<span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//输出</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>my1<span class="token punctuation">.</span>next<span class="token punctuation">.</span>value<span class="token punctuation">,</span>my2<span class="token punctuation">.</span>next<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-常规的数组遍历方法"><a href="#3-常规的数组遍历方法" class="headerlink" title="3.常规的数组遍历方法"></a>3.常规的数组遍历方法</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//数组的遍历输出</span>
+<span class="token keyword">var</span> test <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">traverse</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//判断数组为空情况</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>arr <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数组打印输出完毕"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">traverse</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="4-数组递归遍历"><a href="#4-数组递归遍历" class="headerlink" title="4.数组递归遍历"></a>4.数组递归遍历</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//数组的递归遍历操作函数</span>
+<span class="token keyword">var</span> test <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">traverse_one</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>arr <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> arr<span class="token punctuation">.</span>length <span class="token operator">&lt;=</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数组打印完毕!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">traverse_one</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">traverse_one</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="5-链表的常规遍历-ps-未知链表的长度可以使用while循环操作"><a href="#5-链表的常规遍历-ps-未知链表的长度可以使用while循环操作" class="headerlink" title="5.链表的常规遍历 (ps:未知链表的长度可以使用while循环操作)"></a>5.链表的常规遍历 (ps:未知链表的长度可以使用while循环操作)</h4><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">traverse_Link</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> temp <span class="token operator">=</span> root<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//使用while循环遍历操作</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>temp <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>temp<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"链表打印输出完毕!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        temp <span class="token operator">=</span> temp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="6-链表的递归遍历解法"><a href="#6-链表的递归遍历解法" class="headerlink" title="6.链表的递归遍历解法"></a>6.链表的递归遍历解法</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//链表的递归调用方式</span>
+<span class="token keyword">function</span> <span class="token function">traverse_Link_one</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"链表打印完毕!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">return</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token function">traverse_Link_one</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>next<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//递归调用方式</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="7-js实现一些算法和-c-c-或者-java-实现起来会有些不同-还是自己手写一遍更加清楚。"><a href="#7-js实现一些算法和-c-c-或者-java-实现起来会有些不同-还是自己手写一遍更加清楚。" class="headerlink" title="7.js实现一些算法和 c/c++ 或者 java 实现起来会有些不同,还是自己手写一遍更加清楚。"></a>7.js实现一些算法和 c/c++ 或者 java 实现起来会有些不同,还是自己手写一遍更加清楚。</h4>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/06/30/049/">
+    <time datetime="2020-06-30T09:04:46.392Z" class="entry-date">
+        2020-06-30
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-048" class="post-048 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/06/21/048/">制作R包</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/06/21/048/" data-id="ckiwopq75003unlkjfjuwhcue" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <hr>
+<h3 id="R包的制作"><a href="#R包的制作" class="headerlink" title="R包的制作:"></a>R包的制作:</h3><h3 id="1-确定一个r包的项目文件结构"><a href="#1-确定一个r包的项目文件结构" class="headerlink" title="1. 确定一个r包的项目文件结构"></a>1. 确定一个r包的项目文件结构</h3><h5 id="package-name-Parallel-computing-package-based-on-soil-data-基于土壤数据的并行计算包"><a href="#package-name-Parallel-computing-package-based-on-soil-data-基于土壤数据的并行计算包" class="headerlink" title="package name : Parallel computing package based on soil data (基于土壤数据的并行计算包)"></a><h4>package name : Parallel computing package based on soil data (基于土壤数据的并行计算包)</h4></h5><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/06/21/048/">
+    <time datetime="2020-06-21T14:29:46.994Z" class="entry-date">
+        2020-06-21
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-047" class="post-047 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/04/15/047/">蓝桥杯 --- n皇后问题</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/15/047/" data-id="ckiwopq7g004lnlkj7vgjhlur" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : dfs搜索n皇后</p>
+<hr>
+<ul>
+<li><p>试题内容  —  n皇后</p>
+<p>n-皇后问题是指将 n 个皇后放在 n∗n 的国际象棋棋盘上，使得皇后不能相互攻击到，即任意两个皇后都不能处于同一行、同一列或同一斜线上。</p>
+<p><img src="https://cdn.acwing.com/media/article/image/2019/06/08/19_860e00c489-1_597ec77c49-8-queens.png" alt="1_597ec77c49-8-queens.png"></p>
+<p>现在给定整数n，请你输出所有的满足条件的棋子摆法。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>共一行，包含整数n。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>每个解决方案占n行，每行输出一个长度为n的字符串，用来表示完整的棋盘状态。</p>
+<p>其中”.”表示某一个位置的方格状态为空，”Q”表示某一个位置的方格上摆着皇后。</p>
+<p>每个方案输出完成后，输出一个空行。</p>
+<p>输出方案的顺序任意，只要不重复且没有遗漏即可。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n≤9</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>4</code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>.Q..
+...Q
+Q...
+..Q.
+
+..Q.
+Q...
+...Q
+.Q..</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>思路：n皇后搜索问题</li>
+<li>我的代码 </li>
+</ul>
+<pre><code>//使用dfs来搜索八皇后的解法
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+
+const int N = 20;
+int n;
+char g[N][N];
+bool row[N],col[N],dg[N * 2],udg[N * 2];
+
+void dfs(int x,int y,int s)
+{
+    //判断边界
+    if(s &gt; n)return;
+    //转向
+    if(y == n){
+        y = 0;
+        x++;
+    }
+    //最后查找
+    if(x == n){
+        if(s == n){
+            for(int i = 0;i &lt; n; i++){
+                puts(g[i]);
+            }
+            puts(&quot; &quot;);
+        }
+        return;
+    }
+
+    //不放
+    g[x][y] = &#39;.&#39;;
+    dfs(x,y+1,s);
+
+    //放
+    if(!row[x] &amp;&amp; !col[y] &amp;&amp; !dg[x + y] &amp;&amp; !udg[x - y + n]){
+
+        g[x][y] = &#39;Q&#39;;
+        row[x] = col[y] = dg[x + y] = udg[x - y + n] = true;
+        dfs(x,y+1,s+1);
+        g[x][y] = &#39;.&#39;;
+        row[x] = col[y] = dg[x + y] = udg[x - y + n] = false;
+    }
+
+}
+
+
+int main()
+{
+  cin &gt;&gt; n;
+  for(int i = 0; i &lt; n; i++)
+  {
+      for(int j = 0; j &lt; n; j++)
+      {
+          g[i][j] = &#39;.&#39;;
+      }
+  }
+  dfs(0,0,0);
+  return 0;
+}
+</code></pre><hr>
+<ul>
+<li>思路：使用全排列方式来搜索n皇后问题 — 按照行来进行搜索问题</li>
+<li>我的代码 </li>
+</ul>
+<pre><code>//使用全排列的方式来搜索八皇后的解法
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+
+const int N = 20;
+int n;
+char g[N][N];
+bool col[N],dg[N],udg[N];
+
+void dfs(int u)
+{
+    if(u == n)
+    {
+        for(int i = 0; i &lt; n; i++)
+        {
+            puts(g[i]);
+        }
+        puts(&quot; &quot;);
+        return;
+    }
+
+    for(int i = 0;i &lt; n; i++)
+    {
+        if(!col[i] &amp;&amp; !dg[u + i] &amp;&amp; !udg[n - u + i]) //col代表当前的列  dg代表正对角线  udg代表范对角线
+        {
+            g[u][i] = &#39;Q&#39;;
+            col[i] = dg[u + i] = udg[n - u + i] = true;
+            dfs(u + 1);
+            col[i] = dg[u + i] = udg[n - u + i] = false;
+            g[u][i] = &#39;.&#39;;
+        }
+    }
+
+}
+
+int main()
+{
+  cin &gt;&gt; n;
+  for(int i = 0; i &lt; n; i++)
+  {
+      for(int j = 0; j &lt; n; j++)
+      {
+          g[i][j] = &#39;.&#39;;
+      }
+  }
+  dfs(0);
+  return 0;
+}</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/04/15/047/">
+    <time datetime="2020-04-15T08:27:20.267Z" class="entry-date">
+        2020-04-15
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-046" class="post-046 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/04/08/046/">蓝桥杯 --- 排列数字</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/08/046/" data-id="ckiwopq72003nnlkj1c749tzw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : dfs应用</p>
+<hr>
+<ul>
+<li><p>试题内容  —  排列数字</p>
+<p>给定一个整数n，将数字1~n排成一排，将会有很多种排列方法。</p>
+<p>现在，请你按照字典序将所有的排列方法输出。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>共一行，包含一个整数n。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>按字典序输出所有排列方案，每个方案占一行。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n≤7 </p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>3</code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>1 2 3
+1 3 2
+2 1 3
+2 3 1
+3 1 2
+3 2 1</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>思路：简单的dfs搜索问题</li>
+<li>我的代码 </li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 10;
+int res[N];
+bool st[N];
+int n;
+
+void dfs(int u)
+{
+    if(u == n)
+    {
+        for(int i = 0; i &lt; n; i++){
+            cout &lt;&lt; res[i] &lt;&lt; &quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+        return;
+    }
+    else{
+        for(int i = 1; i &lt;= n; i++)
+        {
+            if(!st[i]){
+                res[u] = i;
+                st[i] = true;
+                dfs(u + 1);
+                res[u] = 0;
+                st[i] = false;
+            }
+        }
+    }
+}
+
+
+int main()
+{
+    cin &gt;&gt; n;
+    dfs(0);
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/04/08/046/">
+    <time datetime="2020-04-08T15:27:39.140Z" class="entry-date">
+        2020-04-08
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-045" class="post-045 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/04/08/045/">算法 --- 递归和尾递归</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/08/045/" data-id="ckiwopq74003qnlkj63xde1vz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 尾递归节省内存</p>
+<hr>
+<ul>
+<li><p>试题内容  —  尾递归</p>
+<p>通常使用递归实现斐波那契问题,在程序的内存之中需要存储n + ( n-1) + (n -2) +… + fib(1) ,然而使用尾递归只需要存储 n总 + fib(1),大大节省内存,在递归的途中就已经实现了问题的解决。</p>
+<p>尾递归比线性递归通常多一个参数,就是上一次函数用到的结果,因此,尾递归并不依赖上层函数运行的余下结果,可以有效避免栈溢出,节省空间内存。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>思路：归并加上不断迭代，解决系统栈问题</li>
+<li>我的代码 — 使用尾递归实现斐波那契数列</li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+
+int fibonacci(int n,int a1,int a2)
+{
+    if(n == 1)
+        return a1;
+    else
+        return fibonacci(n-1,a2,a1 + a2);
+}
+
+int main(){
+
+    int n;
+    cin &gt;&gt; n;
+    cout &lt;&lt; fibonacci(n,1,1) &lt;&lt; endl;
+
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/04/08/045/">
+    <time datetime="2020-04-08T14:42:17.315Z" class="entry-date">
+        2020-04-08
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-044" class="post-044 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/04/08/044/">面试题1 -- 链表版归并排序</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/08/044/" data-id="ckiwopq6y003dnlkjdwqz1j32" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 常见面试题</p>
+<hr>
+<ul>
+<li><p>试题内容  —  链表版归并排序</p>
+<p>给定一个单链表，请使用 O(nlogn)O(nlogn) 的时间复杂度和额外 O(1)O(1) 的空间复杂度对其进行排序。</p>
+<p>样例1<br>输入：4-&gt;2-&gt;1-&gt;3<br>输出：1-&gt;2-&gt;3-&gt;4<br>样例2<br>输入：-1-&gt;5-&gt;3-&gt;4-&gt;0<br>输出：-1-&gt;0-&gt;3-&gt;4-&gt;5</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>思路：归并加上不断迭代，解决系统栈问题</li>
+<li>我的代码</li>
+</ul>
+<pre class=" language-c++"><code class="language-c++">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+      int n = 0; //记录链表长度
+      for(ListNode *p = head; p; p = p->next) n++;
+
+      ListNode *dummy = new ListNode(-1);
+      dummy->next = head;
+
+      //二路归并排序
+      for(int i = 1; i < n; i *= 2)
+      {
+        ListNode* begin = dummy;
+        for(int j = 0; j + i < n; j += i * 2)
+        {
+          ListNode *first = begin->next,*second = irst;
+          for(int k = 0; k < i; k++)
+          {
+            second = second->next;
+          }
+          int f = 0,s = 0; //f->二路归并第一段指针 s->二路归并第二段指针
+          //循环操作
+          while(f < i && s < i && second)
+          {
+                if(first->val < second->val)
+              {
+                begin = begin->next = first;
+                first = first->next;
+                f ++ ;
+              }else{
+                begin = begin->next = second;
+                second = second->next;
+                s ++ ;
+              }
+          }
+
+          while(f < i)
+          {
+            begin = begin->next = first;
+            first = first->next;
+            f++;
+          }
+
+          while(s < i)
+          {
+            begin = begin->next = second;
+            second = second->next;
+            s++;
+          }
+          begin->next = second;
+        }
+      }
+      return dummy->next;
+    }
+
+};</code></pre>
+<hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/04/08/044/">
+    <time datetime="2020-04-08T14:04:01.635Z" class="entry-date">
+        2020-04-08
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-043" class="post-043 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/04/08/043/">面试题1 -- 单链表的快速排序</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/08/043/" data-id="ckiwopq71003lnlkjaazb6ju9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 常见面试题</p>
+<hr>
+<ul>
+<li><p>试题内容  —  单链表的快速排序</p>
+<p>给定一个单链表，请使用快速排序算法对其排序。</p>
+<p>要求：期望平均时间复杂度为 O(nlogn)O(nlogn)，期望额外空间复杂度为 O(logn)O(logn)。</p>
+<p><strong>思考题：</strong> 如果只能改变链表结构，不能修改每个节点的val值该如何做呢？</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>链表中的所有数大小均在 intint 范围内，链表长度在 [0,10000][0,10000]。</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>[5, 3, 2]</code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>[2, 3, 5]</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>思路： 不能直接改变链表的值,但是可以改变链表的指针顺序,那么就和数组的快速排序判断边界问题不大相关了,但是我们可以创建三个子链表 : left, mid, right; 分别模拟记录排序的顺序,最后进行递归循环操作,然后实现链表的拼接就可以了。</li>
+<li>我们这种写法的快速排序是稳定的,是有区别与数组的快排的。时间复杂度是: O(nlogn),递归层数一共是loogn</li>
+<li>我的代码</li>
+</ul>
+<pre class=" language-c++"><code class="language-c++">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* get_tail(ListNode* head){ //找到队尾函数
+        while(head->next){
+            head = head->next;
+        }
+        return head;
+    }
+    ListNode* quickSortList(ListNode* head) {
+        if(!head || !head-> next){
+            return head;
+        }
+        auto left = new ListNode(-1),mid = new ListNode(-1),right = new ListNode(-1);
+        auto ltail = left,mtail = mid,rtail = right;
+        int values = head->val; //快速排序的分界点
+
+        //分段
+        for(auto p = head; p; p = p -> next)
+        {
+            if(p -> val < values){
+                ltail = ltail->next = p;
+            }else if(p -> val == values){
+                mtail = mtail->next = p;
+            }else{
+                rtail = rtail->next = p;
+            }
+        }
+
+        ltail->next = mtail->next = rtail->next = NULL; //加上尾节点
+        left  -> next = quickSortList(left -> next); //递归排序
+        right -> next = quickSortList(right -> next);
+
+        //拼接
+        get_tail(left) -> next = mid -> next;
+        get_tail(left) -> next = right -> next;
+
+
+        auto p = left -> next; //使用C89的动态类型 自动选择,简便运算。
+        delete left; //释放内存
+        delete mid;
+        delete right;
+        return p;
+    }
+};</code></pre>
+<hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/04/08/043/">
+    <time datetime="2020-04-08T13:35:43.378Z" class="entry-date">
+        2020-04-08
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-042" class="post-042 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/04/08/042/">面试题1 -- 蛇形矩阵</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/08/042/" data-id="ckiwopq6z003gnlkj3beaej6h" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 常见面试题</p>
+<hr>
+<ul>
+<li><p>试题内容  —   蛇形矩阵</p>
+<p>输入两个整数n和m，输出一个n行m列的矩阵，将数字 1 到 n*m 按照回字蛇形填充至矩阵中。</p>
+<p>具体矩阵形式可参考样例。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入共一行，包含两个整数n和m。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出满足要求的矩阵。</p>
+<p>矩阵占n行，每行包含m个空格隔开的整数。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n,m≤1001≤n,m≤100</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>3 3</code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>1 2 3
+8 9 4
+7 6 5</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p>思路： 1).可以使用常见的外层一个while循环来嵌套,然后里面四重循环来循环每一条边</p>
+<p>​             2).可以设置偏移量进行循环操作,时间复杂度是o(n * m)次方。</p>
+</li>
+<li><p>我的代码</p>
+</li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+const int N = 110; //设置范围
+int n,m;
+int res[N][N]; //记录的res数组
+int dx[4] = {0,1,0,-1},dy[4] = {1,0,-1,0};
+
+int main()
+{
+  scanf(&quot;%d %d&quot;,&amp;n,&amp;m);
+
+  for(int x = 0,y = 0,k = 1,d = 0; k &lt;= n*m;k++)
+  {
+    res[x][y] = k;
+    int a = x + dx[d],b = y + dy[d];//偏移量
+
+    if(a &gt;= n || a &lt; 0 || b &gt;= m || b &lt; 0 || res[a][b])
+    {
+      //如果走到头了 或者重复走到了
+      d = (d + 1) % 4;
+      a = x + dx[d],b = y + dy[d];
+    }
+
+    x = a;
+    y = b;
+  }
+
+  for(int i  = 0;i &lt; n; i++)
+  {
+    for(int j = 0; j &lt; m; j++)
+    {
+      cout &lt;&lt; res[i][j] &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+  }
+  return 0;
+}
+
+</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/04/08/042/">
+    <time datetime="2020-04-08T12:44:30.906Z" class="entry-date">
+        2020-04-08
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-041" class="post-041 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/04/06/041/">爱的蜜饯---day28</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/06/041/" data-id="ckiwopq6x0039nlkjb6rnhqkg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -96,16 +1030,16 @@
         The article has been encrypted, please enter your password to view.<br>
         
           <p class="article-more-link">
-            <a href="/2020/04/04/030/#more" class="more-link">More <span class="meta-nav">→</span></a>
+            <a href="/2020/04/06/041/#more" class="more-link">More <span class="meta-nav">→</span></a>
           </p>
         
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2020/04/04/030/">
-    <time datetime="2020-04-04T12:09:53.389Z" class="entry-date">
-        2020-04-04
+    <a href="/2020/04/06/041/">
+    <time datetime="2020-04-06T09:42:36.501Z" class="entry-date">
+        2020-04-06
     </time>
 </a>
     
@@ -127,7 +1061,7 @@
 
 
   
-    <article id="post-029" class="post-029 post type-post status-publish format-standard hentry">
+    <article id="post-040" class="post-040 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -135,14 +1069,14 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/029/">爱的蜜饯---day17</a>
+      <a class="article-title" href="/2020/04/06/040/">爱的蜜饯---day27</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/029/" data-id="ckiwlefr4002hjwkjb4cxcr35" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/06/040/" data-id="ckiwopq6w0036nlkj0mlg0738" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -151,456 +1085,16 @@
         The article has been encrypted, please enter your password to view.<br>
         
           <p class="article-more-link">
-            <a href="/2020/04/04/029/#more" class="more-link">More <span class="meta-nav">→</span></a>
+            <a href="/2020/04/06/040/#more" class="more-link">More <span class="meta-nav">→</span></a>
           </p>
         
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2020/04/04/029/">
-    <time datetime="2020-04-04T12:08:24.901Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-028" class="post-028 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/028/">爱的蜜饯---day16</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/028/" data-id="ckiwlefr3002ejwkjdr6ddwog" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/028/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/028/">
-    <time datetime="2020-04-04T12:07:04.848Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-027" class="post-027 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/027/">爱的蜜饯---day15</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/027/" data-id="ckiwlefr2002ajwkj69tn2rie" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/027/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/027/">
-    <time datetime="2020-04-04T12:05:47.959Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-026" class="post-026 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/026/">爱的蜜饯---day14</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/026/" data-id="ckiwlefr10027jwkj0xgh1n9t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/026/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/026/">
-    <time datetime="2020-04-04T12:04:32.305Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-025" class="post-025 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/025/">爱的蜜饯---day13</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/025/" data-id="ckiwlefqq0020jwkjhw7i7ppx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/025/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/025/">
-    <time datetime="2020-04-04T12:01:53.749Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-024" class="post-024 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/024/">爱的蜜饯---day12</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/024/" data-id="ckiwlefqu0023jwkj1tgv709d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/024/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/024/">
-    <time datetime="2020-04-04T12:00:42.004Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-023" class="post-023 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/023/">爱的蜜饯---day11</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/023/" data-id="ckiwlefqp001xjwkjdnyq0rv2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/023/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/023/">
-    <time datetime="2020-04-04T11:58:55.516Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-022" class="post-022 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/022/">爱的蜜饯---day10</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/022/" data-id="ckiwlefqn001sjwkj2thz5z5m" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/022/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/022/">
-    <time datetime="2020-04-04T11:57:38.028Z" class="entry-date">
-        2020-04-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/Love/">Love</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-021" class="post-021 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/04/04/021/">爱的蜜饯---day09</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/04/04/021/" data-id="ckiwlefqh001hjwkjb57y7qnu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        The article has been encrypted, please enter your password to view.<br>
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/021/#more" class="more-link">More <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/04/04/021/">
-    <time datetime="2020-04-04T11:56:24.840Z" class="entry-date">
-        2020-04-04
+    <a href="/2020/04/06/040/">
+    <time datetime="2020-04-06T09:41:02.756Z" class="entry-date">
+        2020-04-06
     </time>
 </a>
     
@@ -625,7 +1119,7 @@
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
       </nav>
     </nav>
   
@@ -644,7 +1138,7 @@
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" rel="tag">20级新生选拔天梯赛( 一 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" rel="tag">20级新生选拔天梯赛( 二 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第2次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第3次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag">二分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" rel="tag">基础输出算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" rel="tag">斐波那契数列+高精度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" rel="tag">模拟进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" rel="tag">简单循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%BE%E9%A2%98/" rel="tag">难题</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -653,7 +1147,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">tagcloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/mac/" style="font-size: 16.33px; color: #b0a">mac</a> <a href="/tags/git/" style="font-size: 16.33px; color: #b0a">git</a> <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 23px; color: #f00">love💗</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 16.33px; color: #b0a">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 19.67px; color: #d05">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.67px; color: #d05">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" style="font-size: 13px; color: #90f">最大公约数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 13px; color: #90f">数论</a> <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" style="font-size: 13px; color: #90f">进制转化</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 13px; color: #90f">情感</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">循环</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 16.33px; color: #b0a">链表</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">快速排序</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">归并排序</a> <a href="/tags/js/" style="font-size: 13px; color: #90f">js</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 13px; color: #90f">感悟</a> <a href="/tags/R%E8%AF%AD%E8%A8%80/" style="font-size: 13px; color: #90f">R语言</a>
+      <a href="/tags/mac/" style="font-size: 15px; color: #ad00cc">mac</a> <a href="/tags/git/" style="font-size: 15px; color: #ad00cc">git</a> <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 17px; color: #c20099">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 19px; color: #d60066">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #d60066">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" style="font-size: 13px; color: #90f">最大公约数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 13px; color: #90f">数论</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 13px; color: #90f">情感</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 23px; color: #f00">love💗</a> <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" style="font-size: 13px; color: #90f">进制转化</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px; color: #ad00cc">链表</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">归并排序</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">循环</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">快速排序</a> <a href="/tags/R%E8%AF%AD%E8%A8%80/" style="font-size: 13px; color: #90f">R语言</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 13px; color: #90f">感悟</a> <a href="/tags/js/" style="font-size: 13px; color: #90f">js</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 一 )</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 17px; color: #c20099">基础算法</a> <a href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" style="font-size: 13px; color: #90f">模拟进制</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">基础输出算法</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 二 )</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13px; color: #90f">模拟</a> <a href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">简单循环</a> <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">贪心算法</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第1次周赛</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 13px; color: #90f">斐波那契数列+高精度</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第2次周赛</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 13px; color: #90f">二分</a> <a href="/tags/%E9%9A%BE%E9%A2%98/" style="font-size: 13px; color: #90f">难题</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第3次周赛</a>
     </div>
   </div>
 
@@ -663,7 +1157,7 @@
   <aside class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%94%9F/">人生</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%94%9F/">人生</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E8%B5%9B/">新生选拔赛</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -675,23 +1169,23 @@
       <ul>
         
           <li>
-            <a href="/2020/08/14/050/"> 写给二十岁想成为程序员的我 </a>
+            <a href="/2020/12/20/69/">理想超级主板</a>
           </li>
         
           <li>
-            <a href="/2020/06/30/049/"> 那些js实现的算法和数据结构(一) </a>
+            <a href="/2020/12/20/68/">英雄找宝剑</a>
           </li>
         
           <li>
-            <a href="/2020/06/21/048/">制作R包</a>
+            <a href="/2020/12/20/67/">爱消除</a>
           </li>
         
           <li>
-            <a href="/2020/04/15/047/">蓝桥杯 --- n皇后问题</a>
+            <a href="/2020/12/20/66/">大鱼吃小鱼，小鱼吃虾米</a>
           </li>
         
           <li>
-            <a href="/2020/04/08/046/">蓝桥杯 --- 排列数字</a>
+            <a href="/2020/12/20/65/">比值</a>
           </li>
         
       </ul>
