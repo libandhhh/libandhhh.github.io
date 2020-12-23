@@ -72,6 +72,322 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-72" class="post-72 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/12/23/72/">统计日期</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/23/72/" data-id="ckj1jrmj7006pxnkjgqcfdv36" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 较难</p>
+<ul>
+<li>出题人 : 朱俊老师</li>
+</ul>
+<hr>
+<ul>
+<li>试题内容  —   统计日期</li>
+</ul>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>从1900年开始计算,统计未来n年之内每个月13号是星期一,星期二…星期日的频率。</p>
+<p>注解 : 从1900年1月1日开始算起一直到1900+n-1年的12月31日号</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入年数 n </p>
+<p>(1 &lt;= n &lt;= 300)</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>依次输出从星期一到星期日是在13号出现的次数</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><pre><code>40</code></pre><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><pre><code>69 68 70 68 69 68 68 </code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><hr>
+<ul>
+<li>我的代码</li>
+</ul>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+int cnt[8];
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int k = 1;
+    memset(cnt, 0, sizeof cnt);
+    for(int i = 0; i &lt; n; i++)
+        for(int j = 1; j &lt;= 12; j++) {
+            int day = (12 + k) % 7;
+            cnt[day ? day : 7]++;
+            if(j == 4 || j == 6 || j == 9 || j == 11) k += 30;
+            else if(j == 2) {
+                int year = 1900 + i;
+                if((year % 400) == 0) k += 29;
+                else if((year % 4) == 0 &amp;&amp; year % 100) k += 29;
+                else k += 28;
+            } else k += 31;
+        }
+    for(int i = 1; i &lt; 8; i++) cout &lt;&lt; cnt[i % 7 ? i % 7 : 7] &lt;&lt; &#39; &#39;;
+    puts(&quot;&quot;);
+    return 0;
+}
+</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/12/23/72/">
+    <time datetime="2020-12-23T15:01:31.710Z" class="entry-date">
+        2020-12-23
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第4次周赛</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-71" class="post-71 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/12/23/71/">机器人</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/23/71/" data-id="ckj1jrmj6006mxnkj9bjv6380" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 较难</p>
+<ul>
+<li>出题人 : 朱俊老师</li>
+</ul>
+<hr>
+<ul>
+<li>试题内容  —   机器人</li>
+</ul>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>现假设笛卡尔坐标系上有一个机器人，其坐标为(0, 0)，现在，这个机器人想要到达(x, y)这个位置。<br>这个机器人每秒都会执行一个指令，指令的列表如下：<br>指令I：向上移动，即坐标从(i, j)变为(i, j + 1)<br>指令II：向右移动，即坐标从(i, j)变为(i + 1, j)<br>指令III：向下移动，即坐标从(i ,j)变为(i, j - 1)<br>指令IV：向左移动，即坐标从(i, j)变为(i - 1, j)<br>指令V：原地停留一秒，即不改变其坐标。<br>此外，对于机器人来说，相同的指令不能连续执行两次。<br>现在，我们想要知道这个机器人从(0, 0)到(x, y)，最少要多少秒？</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入共1行，有2个非负整数x和y，表示要到达的目的地坐标是(x, y)</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出从(0, 0)到(x, y)最少需要的秒数。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><pre><code>0 0</code></pre><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><pre><code>0</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>样例解释#1：</p>
+<p>因为机器人就在(0, 0)坐标，所以无需任何操作就可到达目标坐标，故只需0秒。</p>
+<p>样例输入#2</p>
+<p>2 0</p>
+<p>样例输出#2</p>
+<p>3</p>
+<p>样例解释#2：</p>
+<p>指令序列如下：II,V,II。先往右走1个单位，因为不能有两个连续的向右命令，故需要原地停留一秒，再向右走一个单位，故总共经过3秒。</p>
+<p>数据约定：</p>
+<p>对于100%的数据：</p>
+<p>0 &lt;= x, y &lt;= 104</p>
+<hr>
+<ul>
+<li>我的代码</li>
+</ul>
+<pre><code>import java.util.*;
+import java.math.*;
+
+public class Main {
+    public static void main(String[] args){
+        int a,b,sum = 0;
+        Scanner sc = new Scanner(System.in);
+        a = sc.nextInt();
+        b = sc.nextInt();
+        if(a &lt; b)
+        {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+        if(a - b &gt; 1)
+        {
+            sum = 2 * (a - b) - 1 + 2 * b;
+        }else{
+            sum = a + b;
+        }
+        System.out.println(sum);
+    }
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/12/23/71/">
+    <time datetime="2020-12-23T15:00:19.095Z" class="entry-date">
+        2020-12-23
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第4次周赛</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-70" class="post-70 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/12/23/70/">捉迷藏</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/23/70/" data-id="ckj1jrmj5006kxnkjbw3d5s4z" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 较难</p>
+<ul>
+<li>出题人 : 朱俊老师</li>
+</ul>
+<hr>
+<ul>
+<li>试题内容  —   捉迷藏</li>
+</ul>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一张地图，由小方格组成，平面上的正方形格子被填上黑色或白色。小明站在其中一个方格中。</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入数据的第一行是 m n 两个整数（3 &lt; m, n &lt; 100），表示正方形格子的行数和列数。</p>
+<p>接下来是一行数据：x y s k, 其中x y为整数，表示小明所在行号和列号（行号从上到下增长，列号从左到右增长，都是从0开始编号）。s 是一个大写字母，表示小明头的朝向，我们约定：上下左右分别用：UDLR表示。k 表示小明走的步数。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出数据为两个空格分开的整数 p q, 分别表示小明在k步后，所处格子的行号和列号。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><pre><code>3 3
+0 0 0
+1 1 1
+1 1 1
+1 1 U 6</code></pre><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><pre><code>0 0</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><hr>
+<ul>
+<li>我的代码</li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdio&gt;
+#include&lt;set&gt;
+using namespace std;
+int map[101][101];
+int n, m;
+int sum,shang=0,xia=0,zuo=0,you=0;
+char fh;
+void f(int q1,int q2,int sum,char c)
+{
+    if(sum==0){
+        cout&lt;&lt;q1&lt;&lt;&quot; &quot;&lt;&lt;q2;
+        return;
+    }
+    else{
+        if(map[q1][q2]==1){
+            map[q1][q2]=0;
+            if(c==&#39;U&#39;)
+               f(q1,q2+1,sum-1,&#39;R&#39;);
+            else if(c==&#39;D&#39;)
+                f(q1,q2-1,sum-1,&#39;L&#39;);
+            else if(c==&#39;L&#39;)
+                f(q1-1,q2,sum-1,&#39;U&#39;);
+            else if(c==&#39;R&#39;)
+                f(q1+1,q2,sum-1,&#39;D&#39;);
+        }
+        else
+        {
+            map[q1][q2]=1;
+            if(c==&#39;U&#39;)
+                f(q1,q2-1,sum-1,&#39;L&#39;);
+            else if(c==&#39;D&#39;)
+               f(q1,q2+1,sum-1,&#39;R&#39;);
+            else if(c==&#39;L&#39;)
+                f(q1+1,q2,sum-1,&#39;D&#39;);
+            else if(c==&#39;R&#39;)
+                f(q1-1,q2,sum-1,&#39;U&#39;);
+        }
+    }
+}
+int main()
+{
+    cin&gt;&gt;n&gt;&gt;m;
+    for(int i=0;i&lt;n;i++) for(int j=0;j&lt;m;j++) cin&gt;&gt;map[i][j];
+    int q1,q2;
+    cin&gt;&gt;q1&gt;&gt;q2&gt;&gt;fh&gt;&gt;sum;
+    f(q1,q2,sum,fh);
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/12/23/70/">
+    <time datetime="2020-12-23T14:58:39.671Z" class="entry-date">
+        2020-12-23
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第4次周赛</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-69" class="post-69 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -87,7 +403,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/69/" data-id="ckiwopq800062nlkja5zmd9q3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/69/" data-id="ckj1jrmj4006gxnkjhllp1txp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -119,21 +435,21 @@
 <ul>
 <li>我的代码</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<set>
-#include<cstdio>
-#include<string>
-#include<map>
-#include<algorithm>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;set&gt;
+#include&lt;cstdio&gt;
+#include&lt;string&gt;
+#include&lt;map&gt;
+#include&lt;algorithm&gt;
 using namespace std;
 typedef long long ll;
-const int inf=1<<28;
+const int inf=1&lt;&lt;28;
 const int maxn=100005;
 const ll mod = 1000000007;
 int dp[2][maxn];
-ll extend_gcd(ll a,ll b,ll &x,ll &y)
+ll extend_gcd(ll a,ll b,ll &amp;x,ll &amp;y)
 {
     if(b==0)
     {
@@ -156,7 +472,7 @@ ll Get_Inverse(ll num)
 ll combine(ll n,ll m)//计算组合数C(n,m)
 {
     ll t1=1,t2=1;
-    for(ll i=n;i>m;i--)
+    for(ll i=n;i&gt;m;i--)
     {
         t1=(t1*i)%mod;
         t2=(t2*(i-m))%mod;
@@ -167,15 +483,14 @@ int main()
 {
     int n,i,j;
 
-    while (cin >> n) {
+    while (cin &gt;&gt; n) {
         ll ans =2*combine(2*n-1,n) - n;
 
-        cout<<ans%mod<<endl;
+        cout&lt;&lt;ans%mod&lt;&lt;endl;
     }
     return 0;
 
-}</code></pre>
-<hr>
+}</code></pre><hr>
 
       
     </div><!-- .entry-content -->
@@ -220,7 +535,7 @@ int main()
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/68/" data-id="ckiwopq810066nlkj2wes22sf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/68/" data-id="ckj1jrmj3006dxnkj8h292w9p" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -261,38 +576,37 @@ oop!</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提
 <ul>
 <li>我的代码</li>
 </ul>
-<pre class=" language-java"><code class="language-java">#include <span class="token operator">&lt;</span>iostream<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>cstdio<span class="token operator">></span>
-using namespace std<span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">1e6</span> <span class="token operator">+</span> <span class="token operator">+</span><span class="token number">1e5</span> <span class="token operator">+</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+const int N = 1e6 + +1e5 + 5;
 
-<span class="token keyword">int</span> fa<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-bool st<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+int fa[N];
+bool st[N];
 
-<span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">int</span> v<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        st<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> v<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> fa<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>fa<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+int find(int v)
+{
+    if (!st[v])
+    {
+        st[v] = true;
+        return v;
+    }
+    return fa[v] = find(fa[v]);
+}
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> fa<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> v<span class="token punctuation">;</span>
-        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> <span class="token function">find</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<hr>
+int main()
+{
+    for (int i = 0; i &lt; N; ++i) fa[i] = i+1;
+    int n;
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 0; i &lt; n; ++i)
+    {
+        int v;
+        scanf(&quot;%d&quot;, &amp;v);
+        printf(&quot;%d &quot;, find(v));
+    }
+    return 0;
+}</code></pre><hr>
 
       
     </div><!-- .entry-content -->
@@ -337,7 +651,7 @@ bool st<span class="token punctuation">[</span>N<span class="token punctuation">
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/67/" data-id="ckiwopq7x005vnlkj0rbgav6b" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/67/" data-id="ckj1jrmj20069xnkjel0b03cc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -369,38 +683,37 @@ bool st<span class="token punctuation">[</span>N<span class="token punctuation">
 <ul>
 <li>我的代码</li>
 </ul>
-<pre class=" language-java"><code class="language-java">#include <span class="token operator">&lt;</span>iostream<span class="token operator">></span>
-#include <span class="token operator">&lt;</span>cstdio<span class="token operator">></span>
-using namespace std<span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">1e6</span> <span class="token operator">+</span> <span class="token operator">+</span><span class="token number">1e5</span> <span class="token operator">+</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+const int N = 1e6 + +1e5 + 5;
 
-<span class="token keyword">int</span> fa<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
-bool st<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+int fa[N];
+bool st[N];
 
-<span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">int</span> v<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        st<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> v<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> fa<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>fa<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+int find(int v)
+{
+    if (!st[v])
+    {
+        st[v] = true;
+        return v;
+    }
+    return fa[v] = find(fa[v]);
+}
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> fa<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> v<span class="token punctuation">;</span>
-        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> <span class="token function">find</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<hr>
+int main()
+{
+    for (int i = 0; i &lt; N; ++i) fa[i] = i+1;
+    int n;
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 0; i &lt; n; ++i)
+    {
+        int v;
+        scanf(&quot;%d&quot;, &amp;v);
+        printf(&quot;%d &quot;, find(v));
+    }
+    return 0;
+}</code></pre><hr>
 
       
     </div><!-- .entry-content -->
@@ -445,7 +758,7 @@ bool st<span class="token punctuation">[</span>N<span class="token punctuation">
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/66/" data-id="ckiwopq7y005znlkjch1ob55g" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/66/" data-id="ckj1jrmiy005zxnkj6tz63y7h" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -629,7 +942,7 @@ bool <span class="token function">D2</span><span class="token punctuation">(</sp
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/65/" data-id="ckiwopq7w005tnlkjgxpo04r1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/65/" data-id="ckj1jrmj00062xnkj27sjbj8n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -722,7 +1035,7 @@ LL n<span class="token punctuation">;</span>
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/64/" data-id="ckiwopq7s005inlkjdjz16vgk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/64/" data-id="ckj1jrmir005pxnkjfmfm9oq8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -851,7 +1164,7 @@ LL n<span class="token punctuation">;</span>
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/63/" data-id="ckiwopq7r005fnlkj4igwgae0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/63/" data-id="ckj1jrmj10066xnkj2iwg2qw2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -881,15 +1194,15 @@ LL n<span class="token punctuation">;</span>
 <ul>
 <li>我的代码</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">#include<iostream>
-#include<algorithm>
-#include<cstdio>
-#include<vector>
-#include<cstring>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
 using namespace std;
-typedef pair<int,int> PII;
+typedef pair&lt;int,int&gt; PII;
 const int N = 1e4+233;
-vector<PII> res;
+vector&lt;PII&gt; res;
 int f[N];
 int dfs(int x)
 {
@@ -899,39 +1212,38 @@ int dfs(int x)
 int main()
 {
     int n;
-    while(cin >> n)
+    while(cin &gt;&gt; n)
     {
         int ans = 0;
         res.clear();
         int mymax = 0;
 
-        for(int i = 1; i <= n; i++)
+        for(int i = 1; i &lt;= n; i++)
         {
             int u,v;
-            cin >> u >> v;
+            cin &gt;&gt; u &gt;&gt; v;
             res.push_back({-u, v});
             mymax = max(mymax, v);
         }
 
-        for(int i = 0; i <= mymax; i++)
+        for(int i = 0; i &lt;= mymax; i++)
         {
             f[i] = i;
         } 
         sort(res.begin(), res.end());
-        for(int i = 0; i < res.size(); i++)
+        for(int i = 0; i &lt; res.size(); i++)
         {
             int v = -res[i].first, e = res[i].second;
             int pos = dfs(e);
-            if(pos > 0)
+            if(pos &gt; 0)
             {
                 ans += v;
                 f[pos] = pos - 1;
             }
         }
-        cout << ans << endl;
+        cout &lt;&lt; ans &lt;&lt; endl;
     }
-}</code></pre>
-<hr>
+}</code></pre><hr>
 
       
     </div><!-- .entry-content -->
@@ -961,314 +1273,10 @@ int main()
 
 
   
-    <article id="post-62" class="post-62 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/12/20/62/">堆石头</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/62/" data-id="ckiwopq7u005pnlkj2j14c1o7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>内容简介 : 较难</p>
-<ul>
-<li>出题人 : 朱俊老师</li>
-</ul>
-<hr>
-<ul>
-<li>试题内容  —   堆石头</li>
-</ul>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有n堆不同种类的石头，你需要把所有堆石头合成一堆。每一次合并，你可以把两堆石头合并到一起，消耗的体力等于两堆石头的重量之和。可以看出，所有的石头经过n-1次合并之后，就只剩下一堆了。你在合并石头时总共消耗的体力等于每次合并所耗体力之和。求最小的体力消耗</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入包括两行，第一行是一个整数n，表示石头的种类数。</p>
-<p>第二行包含n个整数，用空格分隔，第i个整数ai是第i种石头的数目。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出包括一行，这一行只包含一个整数，也就是最小的体力耗费值。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><pre><code>3 
-1 2 9 </code></pre><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><pre><code>15</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>数据约定：</p>
-<p>对于100%的数据：</p>
-<p>1≤n≤10000,1≤ai≤20000</p>
-<hr>
-<ul>
-<li>我的代码</li>
-</ul>
-<pre class=" language-c++"><code class="language-c++">#include<iostream>
-#include<algorithm>
-#include<queue>
-#include<cstdio>
-#include<vector>
-using namespace std;
-
-int main(){
-    int n;
-    priority_queue<int,vector<int>,greater<int>> heap;
-    cin>>n;
-    for(int i=0;i<n;i++){
-        int m;
-        cin>>m;
-        heap.push(m);
-    }
-
-    int res=0;
-    while(heap.size()>1){
-        int a=heap.top();heap.pop();
-        int b=heap.top();heap.pop();
-        res+=(a+b);
-        heap.push(a+b);
-    }
-
-    cout<<res;
-    return 0;
-}</code></pre>
-<hr>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/12/20/62/">
-    <time datetime="2020-12-20T04:57:46.824Z" class="entry-date">
-        2020-12-20
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%BE%E9%A2%98/" rel="tag">难题</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-61" class="post-61 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/12/20/61/">采药人</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/61/" data-id="ckiwopq7o0058nlkj81y9cwtf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>内容简介 : 较难</p>
-<ul>
-<li>出题人 : 朱俊老师</li>
-</ul>
-<hr>
-<ul>
-<li>试题内容  —   采药人</li>
-</ul>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>小紫想成为世界上最伟大的医师。今天，她碰到了一个难题。一位有名的医师把她带到一个到处都是草药的山洞里对她说：“这个山洞里有一些不同的草药，采每一株都需要一些时间，每一株也有它自身的价值。如果我给你一段时间，在这段时间里，你可以采到一些草药。我相信你是一个聪明的孩子，应该可以让采到的草药的总价值最大。”</p>
-<p>如果你是小紫，你能完成这个任务吗？</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>第一行有两个整数T，M。T表示总共能够用来采药的时间，M表示山洞里的草药数量。<br>第2~M+1行，每行有两个整数Ti和Wi，Ti表示采摘第i株草药需要的时间，Wi表示第i株草药的价值。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出在规定的时间内可以采到的草药的最大总价值。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><pre><code>70 3
-71 100
-69 1
-1 2</code></pre><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><pre><code>3</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>数据约定：</p>
-<p>对于100%的数据：</p>
-<p>1 &lt;= T, Ti &lt;= 1000</p>
-<p>1 &lt;= M, Wi &lt;= 100</p>
-<hr>
-<ul>
-<li>我的代码</li>
-</ul>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>math<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">static</span> BufferedWriter out<span class="token punctuation">;</span>
-    <span class="token keyword">static</span> <span class="token keyword">long</span> ans <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
-    <span class="token keyword">static</span> <span class="token keyword">long</span> modulo <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span><span class="token number">1e9</span> <span class="token operator">+</span> <span class="token number">7</span><span class="token punctuation">;</span>
-
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(new FileInputStream("2020.txt"))));</span>
-        out <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedWriter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">OutputStreamWriter</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Scanner in <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> t <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> m <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> weight<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token punctuation">,</span> value<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> dp<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>t <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            weight<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            value<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> t<span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">>=</span> weight<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>j <span class="token operator">-</span> weight<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> value<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        out<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        out<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<hr>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/12/20/61/">
-    <time datetime="2020-12-20T04:53:35.220Z" class="entry-date">
-        2020-12-20
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-60" class="post-60 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/12/20/60/">帮帮光头强</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/20/60/" data-id="ckiwopq7t005mnlkjcw70104e" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>内容简介 : 基础题</p>
-<ul>
-<li>出题人 : 林航威</li>
-</ul>
-<hr>
-<ul>
-<li>试题内容  —   帮帮光头强</li>
-</ul>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>光头强的老板因光头强办事不力想开了他，但在光头强的要求下又给了他一个机会让他证明自己的伐木能力。老板只允许光头强砍倒单行树木。光头强的考验过程如下：光头强设置一个高度参数h米，伐木机升起一个巨大的锯片到高度h，并锯掉所有的树比h高的部分（当然，树木不高于h米的部分保持不变）。光头强可以树木被锯下的部分。例如，如果一行树的高度分别为20，15，10和16，光头强把锯片升到15米的高度，切割后树木剩下的高度将是15，15，10和15，而光头强将从第1棵树得到5米，从第4棵树得到1米，共得到6米木材。老板要考验光头强的伐木效率和计算能力，你能帮助光头强找到伐木机锯片的最大的整数高度H，使得他能得到木材至少为M米。如果再升高1米，则他将得不到M米木材。</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入一共有2行。</p>
-<p>第1行是两个正整数n和m，n表示树木的数量，m表示老板要求的木材总长度。</p>
-<p>第2行有n个整数，第i个整数表示第i棵树的高度为hi。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出砍树的最高高度。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><pre><code>10 30
-15 27 9 32 29 7 7 21 8 34</code></pre><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><pre><code>23</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>数据约定：</p>
-<p>对于100%的数据：</p>
-<p>1 ≤ n ≤ 106</p>
-<p>1 ≤ m ≤ 2 * 109</p>
-<p>Σhi ≤ 109</p>
-<p>题目保证一定有解。</p>
-<hr>
-<ul>
-<li>我的代码</li>
-</ul>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-using namespace std;
-
-int main()
-{
-    int n,m,sum,x;
-    cin>>n>>m;
-    int a[n];
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-    for(int b=1;sum<=0;b++){
-        sum=m;
-        x=b;
-        for(int c=0;c<n;c++)
-        {
-            if(x>a[c]) ;
-            else sum=sum-(a[c]-x);
-        }
-}
-    cout<<x-1;     
-}</code></pre>
-<hr>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/12/20/60/">
-    <time datetime="2020-12-20T04:51:46.642Z" class="entry-date">
-        2020-12-20
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E8%B5%9B/">新生选拔赛</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" rel="tag">20级新生选拔天梯赛( 二 )</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag">二分</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
       </nav>
     </nav>
   
@@ -1287,7 +1295,7 @@ int main()
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" rel="tag">20级新生选拔天梯赛( 一 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" rel="tag">20级新生选拔天梯赛( 二 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第2次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第3次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag">二分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" rel="tag">基础输出算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" rel="tag">斐波那契数列+高精度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" rel="tag">模拟进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" rel="tag">简单循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%BE%E9%A2%98/" rel="tag">难题</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" rel="tag">20级新生选拔天梯赛( 一 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" rel="tag">20级新生选拔天梯赛( 二 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第2次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第3次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第4次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag">二分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" rel="tag">基础输出算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" rel="tag">斐波那契数列+高精度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" rel="tag">模拟进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" rel="tag">简单循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%BE%E9%A2%98/" rel="tag">难题</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -1296,7 +1304,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">tagcloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/mac/" style="font-size: 15px; color: #ad00cc">mac</a> <a href="/tags/git/" style="font-size: 15px; color: #ad00cc">git</a> <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 17px; color: #c20099">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 19px; color: #d60066">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #d60066">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" style="font-size: 13px; color: #90f">最大公约数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 13px; color: #90f">数论</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 13px; color: #90f">情感</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 23px; color: #f00">love💗</a> <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" style="font-size: 13px; color: #90f">进制转化</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px; color: #ad00cc">链表</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">归并排序</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">循环</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">快速排序</a> <a href="/tags/R%E8%AF%AD%E8%A8%80/" style="font-size: 13px; color: #90f">R语言</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 13px; color: #90f">感悟</a> <a href="/tags/js/" style="font-size: 13px; color: #90f">js</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 一 )</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 17px; color: #c20099">基础算法</a> <a href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" style="font-size: 13px; color: #90f">模拟进制</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">基础输出算法</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 二 )</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13px; color: #90f">模拟</a> <a href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">简单循环</a> <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">贪心算法</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第1次周赛</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 13px; color: #90f">斐波那契数列+高精度</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第2次周赛</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 13px; color: #90f">二分</a> <a href="/tags/%E9%9A%BE%E9%A2%98/" style="font-size: 13px; color: #90f">难题</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第3次周赛</a>
+      <a href="/tags/mac/" style="font-size: 15px; color: #ad00cc">mac</a> <a href="/tags/git/" style="font-size: 15px; color: #ad00cc">git</a> <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 17px; color: #c20099">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 19px; color: #d60066">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #d60066">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 23px; color: #f00">love💗</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" style="font-size: 13px; color: #90f">最大公约数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 13px; color: #90f">数论</a> <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" style="font-size: 13px; color: #90f">进制转化</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 13px; color: #90f">情感</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px; color: #ad00cc">链表</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">快速排序</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">循环</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">归并排序</a> <a href="/tags/R%E8%AF%AD%E8%A8%80/" style="font-size: 13px; color: #90f">R语言</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 一 )</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 17px; color: #c20099">基础算法</a> <a href="/tags/js/" style="font-size: 13px; color: #90f">js</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">基础输出算法</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 13px; color: #90f">感悟</a> <a href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">简单循环</a> <a href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" style="font-size: 13px; color: #90f">模拟进制</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 二 )</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13px; color: #90f">模拟</a> <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">贪心算法</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 13px; color: #90f">斐波那契数列+高精度</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 13px; color: #90f">二分</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第2次周赛</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第1次周赛</a> <a href="/tags/%E9%9A%BE%E9%A2%98/" style="font-size: 13px; color: #90f">难题</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第3次周赛</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第4次周赛</a>
     </div>
   </div>
 
@@ -1306,7 +1314,7 @@ int main()
   <aside class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%94%9F/">人生</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E8%B5%9B/">新生选拔赛</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%94%9F/">人生</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E8%B5%9B/">新生选拔赛</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -1318,23 +1326,23 @@ int main()
       <ul>
         
           <li>
+            <a href="/2020/12/23/72/">统计日期</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/23/71/">机器人</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/23/70/">捉迷藏</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/20/69/">理想超级主板</a>
           </li>
         
           <li>
             <a href="/2020/12/20/68/">英雄找宝剑</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/67/">爱消除</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/66/">大鱼吃小鱼，小鱼吃虾米</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/65/">比值</a>
           </li>
         
       </ul>

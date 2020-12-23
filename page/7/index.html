@@ -72,6 +72,388 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-012" class="post-012 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/03/11/012/">git补充 -- 基于自己工作站的提示</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/03/11/012/" data-id="ckj1jrmgt000pxnkj5s9bhfn9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>基于自己工作站的git指令提交</p>
+<p>怕自己忘掉的指令集</p>
+<pre><code>$ git public
+$ git add .
+$ git commit -m &#39;xxx&#39;
+$ git pull origin master
+$ git push origin master</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/03/11/012/">
+    <time datetime="2020-03-11T10:09:44.756Z" class="entry-date">
+        2020-03-11
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-011" class="post-011 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/03/11/011/">蓝桥杯--小计算器</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/03/11/011/" data-id="ckj1jrmgv000txnkj7x70bmz4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 蓝桥杯历年题目  </p>
+<hr>
+<ul>
+<li>试题内容  —   小计算器</li>
+</ul>
+<p>资源限制</p>
+<p>时间限制：1.0s  内存限制：256.0MB</p>
+<p>问题描述</p>
+<p>　　模拟程序型计算器，依次输入指令，可能包含的指令有</p>
+<p>　　1. 数字：’NUM X’，X为一个只包含大写字母和数字的字符串，表示一个当前进制的数<br>　　2. 运算指令：’ADD’,’SUB’,’MUL’,’DIV’,’MOD’，分别表示加减乘，除法取商，除法取余<br>　　3. 进制转换指令：’CHANGE K’，将当前进制转换为K进制(2≤K≤36)<br>　　4. 输出指令：’EQUAL’，以当前进制输出结果<br>　　5. 重置指令：’CLEAR’，清除当前数字</p>
+<p>　　指令按照以下规则给出：<br>　　数字，运算指令不会连续给出，进制转换指令，输出指令，重置指令有可能连续给出<br>　　运算指令后出现的第一个数字，表示参与运算的数字。且在该运算指令和该数字中间不会出现运算指令和输出指令<br>　　重置指令后出现的第一个数字，表示基础值。且在重置指令和第一个数字中间不会出现运算指令和输出指令<br>　　进制转换指令可能出现在任何地方</p>
+<p>　　运算过程中中间变量均为非负整数，且小于2^63。<br>　　以大写的’A’<del>‘Z’表示10</del>35</p>
+<p>输入格式</p>
+<p>　　第1行：1个n，表示指令数量<br>　　第2..n+1行：每行给出一条指令。指令序列一定以’CLEAR’作为开始，并且满足指令规则</p>
+<p>输出格式</p>
+<p>　　依次给出每一次’EQUAL’得到的结果</p>
+<p>样例输入</p>
+<pre class=" language-7"><code class="language-7">7
+CLEAR
+NUM 1024
+CHANGE 2
+ADD
+NUM 100000
+CHANGE 8
+EQUAL```</code></pre>
+<p>样例输出</p>
+<pre><code>2040</code></pre><hr>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdio&gt;
+#include &lt;cmath&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+long long sum;
+int base = 10; //代表的是进制数
+long long myread()
+{
+    string str;
+    cin &gt;&gt; str;
+    long long val = 0;
+    for(int i = 0; i &lt; str.size(); i++)
+    {
+        long long temp;
+        if(isdigit(str[i]))
+        {
+            temp = str[i] - &#39;0&#39;;
+        }else{
+            temp = str[i] - &#39;A&#39; + 10;
+        }
+        val = val * base + temp;
+    }
+    return val;
+}
+//在输出功能函数中进行转化
+
+void myoutput()
+{
+    //k进制转化操作
+    long long val = sum; //先进行赋值
+    vector&lt;char&gt; v;
+    while(sum){
+        long long val = sum % base;
+        if(val &lt;= 9){
+            v.push_back(val + &#39;0&#39;);
+        }else{
+            v.push_back(val - 10 + &#39;A&#39;);
+        }
+        sum /= base;
+    }
+    if(v.size() == 0)
+    {
+        cout &lt;&lt; 0;
+    }
+    for(int i = v.size()-1; i &gt;= 0; i --)
+    {
+        cout &lt;&lt; v[i];
+    }
+    cout &lt;&lt; endl;
+}
+
+int main()
+{
+    int n; //代表的是n个指令操作
+    cin &gt;&gt; n;
+    string op; //代表每一行指令操作
+    int opt;   //转化成具体的指令个数
+    while (n--)
+    {
+        cin &gt;&gt; op;
+        if (op == &quot;CLEAR&quot;)
+            opt = sum = 0;
+        else if (op == &quot;ADD&quot;)
+            opt = 1; //加上
+        else if (op == &quot;SUB&quot;)
+            opt = 2; //减去
+        else if (op == &quot;MUL&quot;)
+            opt = 3; //乘法
+        else if (op == &quot;DIV&quot;)
+            opt = 4; //除法
+        else if (op == &quot;MOD&quot;)
+            opt = 5; //取余数操作
+        else if (op == &quot;CHANGE&quot;)
+            cin &gt;&gt; base; //换取得base进制数
+        else if (op == &quot;EQUAL&quot;)
+            myoutput();
+        else if (op == &quot;NUM&quot;)
+        {
+            switch (opt)
+            {
+            case 0:
+                sum = myread();
+                break;
+            case 1:
+                sum += myread();
+                break;
+            case 2:
+                sum -= myread();
+                break;
+            case 3:
+                sum *= myread();
+                break;
+            case 4:
+                sum /= myread();
+                break;
+            case 5:
+                sum %= myread();
+                break;
+            }
+        }
+    }
+    return 0;
+}</code></pre><hr>
+<h4 id="补充算法程序-—–-k-进制算法（基础）"><a href="#补充算法程序-—–-k-进制算法（基础）" class="headerlink" title="补充算法程序 —– k 进制算法（基础）"></a>补充算法程序 —– k 进制算法（基础）</h4><p>输入: num 和 k  转化成对应的k进制数 ( 2&lt;=k &amp;&amp; k &lt;= 34)</p>
+<p>详细代码如下:</p>
+<p>Tips: 默认的话num是输入的是10进制数</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+long long num;//任意输入一个10进制数
+int base = 10;//默认是10进制数
+
+void fun(long long num,int base)
+{
+    long long val = 0;
+    vector&lt;char&gt; v; //使用vector进行存储
+
+    while(num){ //循环相除法
+        long long val = num % base;
+        if(val &lt;= 9){
+            v.push_back(val + &#39;0&#39;);
+        }else{
+            v.push_back(val - 10 + &#39;A&#39;);
+        }
+        num /= base;
+    }
+    if(v.size() == 0)
+    {
+        cout &lt;&lt; 0;
+    }
+    for(int i = v.size()-1; i &gt;= 0; i --)
+    {
+        cout &lt;&lt; v[i];
+    }
+    cout &lt;&lt; endl;
+}
+
+int main()
+{
+    cin &gt;&gt; num &gt;&gt; base;
+    fun(num,base);
+    return 0;
+}</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/03/11/011/">
+    <time datetime="2020-03-11T09:35:59.082Z" class="entry-date">
+        2020-03-11
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-010" class="post-010 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2020/02/29/010/">蓝桥杯--正则问题</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/010/" data-id="ckj1jrmgl000jxnkjeccsf7lh" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 蓝桥杯历年题目  </p>
+<hr>
+<ul>
+<li>试题内容  —   正则问题</li>
+</ul>
+<p>考虑一种简单的正则表达式：</p>
+<p>只由 x ( ) | 组成的正则表达式。</p>
+<p>小明想求出这个正则表达式能接受的最长字符串的长度。</p>
+<p>例如 ((xx|xxx)x|(x|xx))xx 能接受的最长字符串是： xxxxxx，长度是6。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>一个由x()|组成的正则表达式。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出所给正则表达式能接受的最长字符串的长度。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>输入长度不超过100，保证合法。</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><pre><code>((xx|xxx)x|(x|xx))xx </code></pre><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><pre><code>6</code></pre><hr>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+using namespace std;
+string str;
+int k;
+int dfs()
+{
+    int res = 0;
+
+    while(k &lt; str.size())
+    {
+        if(str[k] == &#39;(&#39;)
+        {
+            k++;  //跳过左括号
+            res += dfs();
+            k++;  //跳过右括号
+        }
+        else if(str[k] == &#39;|&#39;)
+        {
+            k++; //跳过这个与符号
+            res = max(res,dfs());
+        }else if(str[k] == &#39;)&#39;)
+        {
+            break;
+        }else{
+            k ++; //跳过了 &#39;x&#39;
+            res ++;
+        }
+    }    
+    return res;
+}
+
+int main()
+{
+    cin &gt;&gt; str;
+
+    cout &lt;&lt; dfs() &lt;&lt; endl;
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/02/29/010/">
+    <time datetime="2020-02-29T11:43:22.153Z" class="entry-date">
+        2020-02-29
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-009" class="post-009 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -87,7 +469,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/009/" data-id="ckiwopq5o000jnlkjgt7j5be7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/009/" data-id="ckj1jrmgn000nxnkjax9ccf2o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -214,7 +596,7 @@ int main()
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/001/" data-id="ckiwopq540000nlkjdm9dfjbf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/001/" data-id="ckj1jrmg20000xnkjbzhrc3s2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -274,7 +656,7 @@ int main()
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/002/" data-id="ckiwopq590002nlkjewixfkl3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/002/" data-id="ckj1jrmg80002xnkj27ys4feq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -347,7 +729,7 @@ $ git push -u origin master --上传文件</code></pre><p>还有很多的git指�
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/008/" data-id="ckiwopq5j000bnlkj3xyu1uwt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/29/008/" data-id="ckj1jrmgg000bxnkj3lhs9b8j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -490,7 +872,7 @@ int main()
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/19/007/" data-id="ckiwopq5k000cnlkjdpesf7xc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/19/007/" data-id="ckj1jrmgh000cxnkj3rjx6q2a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -542,7 +924,7 @@ int main()
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/19/006/" data-id="ckiwopq5g0007nlkj6ooe6rma" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/19/006/" data-id="ckj1jrmge0007xnkjbyv80omk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -595,7 +977,7 @@ int main()
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/19/005/" data-id="ckiwopq7e004inlkjba6e6tck" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/19/005/" data-id="ckj1jrmgj000gxnkjciupg27t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -635,127 +1017,10 @@ int main()
 
 
   
-    <article id="post-004" class="post-004 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/02/17/004/">mac之中内存管理机制</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/17/004/" data-id="ckiwopq5d0005nlkjdw5zhxm1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p><u>内容简介 : 对于很多mac用户来说,因为性价比不高,所有往往的配置不是高配置,于是就会产生很多内存不够的苦恼,因此,我们了解一下mac的内存管理机制,更有助于学习和开发效率.</u></p>
-<hr>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/02/17/004/">
-    <time datetime="2020-02-17T05:58:13.175Z" class="entry-date">
-        2020-02-17
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/" rel="tag">mac</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-003" class="post-003 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2020/02/17/003/">搭建博客遇到的坑点</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/02/17/003/" data-id="ckiwopq5f0006nlkjhpo4718q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p><em>内容简介</em> : 记录自己搭建博客遇到的坑点以及建议</p>
-<hr>
-<h3 id="搭建的第一次博客-感到十分无力鸭-踩过的坑是在太多了"><a href="#搭建的第一次博客-感到十分无力鸭-踩过的坑是在太多了" class="headerlink" title="搭建的第一次博客,感到十分无力鸭,踩过的坑是在太多了."></a>搭建的第一次博客,感到十分无力鸭,踩过的坑是在太多了.</h3><hr>
-<p>1.第一次下载hexo的主题文件时候,虽然在本地端口4000成功跑起来了,但是还是十分无脑。使用命令行十分生疏。建议后来者多看看hexo官方的doc，以便可以更好的避过坑点。(附上官方链接: <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a>)</p>
-<hr>
-<p>2.先跑起来再说,对于theme的选择要合适,建议多选择生态圈比较繁荣的theme主体,这样在遇到问题的时候可以更加方便查找,省去很多的力气等等。</p>
-<hr>
-<p>3.没有看懂hexo的生成文件是另一大痛点,由于模块化的组装方式,hexo里面很多的文件都是.ejs的js模板文件,对会一些前端的朋友还是比较友好的。最好搞清楚hexo的文件架构以便可以进行个性化的定制操作。建议了解一下ejs的语法,这样就能更加得心应手的看懂代码了。(附上ejs官方链接: <a href="https://ejs.bootcss.com/" target="_blank" rel="noopener">https://ejs.bootcss.com/</a>)</p>
-<hr>
-<p>4.自己还很无脑的不知道如何进行插件查询和使用,小编自己使用过的一个hexo-tagcloud标签云插件就很无脑,记得要在自己写的md文件中加上categories分类和tags这样就可以使用了,不要无脑进行查找。(附上hexo插件的链接: <a href="https://hexo.io/plugins/" target="_blank" rel="noopener">https://hexo.io/plugins/</a>)</p>
-<hr>
-<p>5.还有使用一个统建站点访问记录的一个插件,详情请见不蒜子的博客,很方便的哦,但是不要在本地跑,本地跑会失灵的。</p>
-<hr>
-<p>6.说在后面: 万事开头难,坚持才能行得通哦。</p>
-<p>[Start the road is blog!!!]</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2020/02/17/003/">
-    <time datetime="2020-02-16T18:40:30.778Z" class="entry-date">
-        2020-02-17
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a>
-  </div>
-
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+        <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &amp;raquo;</a>
       </nav>
     </nav>
   
@@ -774,7 +1039,7 @@ int main()
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" rel="tag">20级新生选拔天梯赛( 一 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" rel="tag">20级新生选拔天梯赛( 二 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第2次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第3次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag">二分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" rel="tag">基础输出算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" rel="tag">斐波那契数列+高精度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" rel="tag">模拟进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" rel="tag">简单循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%BE%E9%A2%98/" rel="tag">难题</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" rel="tag">20级新生选拔天梯赛( 一 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" rel="tag">20级新生选拔天梯赛( 二 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第2次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第3次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第4次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag">二分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" rel="tag">基础输出算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" rel="tag">斐波那契数列+高精度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" rel="tag">模拟进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" rel="tag">简单循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%BE%E9%A2%98/" rel="tag">难题</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -783,7 +1048,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">tagcloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/mac/" style="font-size: 15px; color: #ad00cc">mac</a> <a href="/tags/git/" style="font-size: 15px; color: #ad00cc">git</a> <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 17px; color: #c20099">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 19px; color: #d60066">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #d60066">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" style="font-size: 13px; color: #90f">最大公约数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 13px; color: #90f">数论</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 13px; color: #90f">情感</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 23px; color: #f00">love💗</a> <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" style="font-size: 13px; color: #90f">进制转化</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px; color: #ad00cc">链表</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">归并排序</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">循环</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">快速排序</a> <a href="/tags/R%E8%AF%AD%E8%A8%80/" style="font-size: 13px; color: #90f">R语言</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 13px; color: #90f">感悟</a> <a href="/tags/js/" style="font-size: 13px; color: #90f">js</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 一 )</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 17px; color: #c20099">基础算法</a> <a href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" style="font-size: 13px; color: #90f">模拟进制</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">基础输出算法</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 二 )</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13px; color: #90f">模拟</a> <a href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">简单循环</a> <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">贪心算法</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第1次周赛</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 13px; color: #90f">斐波那契数列+高精度</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第2次周赛</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 13px; color: #90f">二分</a> <a href="/tags/%E9%9A%BE%E9%A2%98/" style="font-size: 13px; color: #90f">难题</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第3次周赛</a>
+      <a href="/tags/mac/" style="font-size: 15px; color: #ad00cc">mac</a> <a href="/tags/git/" style="font-size: 15px; color: #ad00cc">git</a> <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 17px; color: #c20099">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 19px; color: #d60066">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #d60066">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 23px; color: #f00">love💗</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" style="font-size: 13px; color: #90f">最大公约数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 13px; color: #90f">数论</a> <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" style="font-size: 13px; color: #90f">进制转化</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 13px; color: #90f">情感</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px; color: #ad00cc">链表</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">快速排序</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">循环</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">归并排序</a> <a href="/tags/R%E8%AF%AD%E8%A8%80/" style="font-size: 13px; color: #90f">R语言</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 一 )</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 17px; color: #c20099">基础算法</a> <a href="/tags/js/" style="font-size: 13px; color: #90f">js</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">基础输出算法</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 13px; color: #90f">感悟</a> <a href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">简单循环</a> <a href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" style="font-size: 13px; color: #90f">模拟进制</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 二 )</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13px; color: #90f">模拟</a> <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">贪心算法</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 13px; color: #90f">斐波那契数列+高精度</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 13px; color: #90f">二分</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第2次周赛</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第1次周赛</a> <a href="/tags/%E9%9A%BE%E9%A2%98/" style="font-size: 13px; color: #90f">难题</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第3次周赛</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第4次周赛</a>
     </div>
   </div>
 
@@ -793,7 +1058,7 @@ int main()
   <aside class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%94%9F/">人生</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E8%B5%9B/">新生选拔赛</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%94%9F/">人生</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E8%B5%9B/">新生选拔赛</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -805,23 +1070,23 @@ int main()
       <ul>
         
           <li>
+            <a href="/2020/12/23/72/">统计日期</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/23/71/">机器人</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/23/70/">捉迷藏</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/20/69/">理想超级主板</a>
           </li>
         
           <li>
             <a href="/2020/12/20/68/">英雄找宝剑</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/67/">爱消除</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/66/">大鱼吃小鱼，小鱼吃虾米</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/65/">比值</a>
           </li>
         
       </ul>

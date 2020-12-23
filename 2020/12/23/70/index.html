@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--prettify代码高亮主题css引入-->
+  <link href="/plugins/prettify/prettify.css" rel="stylesheet">
+  
+  
+  <meta name="description" content="大二学生,开源爱好者,平时喜欢谢谢blog,欢迎交流,qq:486859916" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>捉迷藏 | 人生小谈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="内容简介 : 较难  出题人 : 朱俊老师    试题内容  —   捉迷藏  题目描述有一张地图，由小方格组成，平面上的正方形格子被填上黑色或白色。小明站在其中一个方格中。 输入输入数据的第一行是 m n 两个整数（3 &lt; m, n &lt; 100），表示正方形格子的行数和列数。 接下来是一行数据：x y s k, 其中x y为整数，表示小明所在行号和列号（行号从上到下增长，列号从左到右">
+<meta property="og:type" content="article">
+<meta property="og:title" content="捉迷藏">
+<meta property="og:url" content="http://www.harry.org.cn/2020/12/23/70/index.html">
+<meta property="og:site_name" content="人生小谈">
+<meta property="og:description" content="内容简介 : 较难  出题人 : 朱俊老师    试题内容  —   捉迷藏  题目描述有一张地图，由小方格组成，平面上的正方形格子被填上黑色或白色。小明站在其中一个方格中。 输入输入数据的第一行是 m n 两个整数（3 &lt; m, n &lt; 100），表示正方形格子的行数和列数。 接下来是一行数据：x y s k, 其中x y为整数，表示小明所在行号和列号（行号从上到下增长，列号从左到右">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-23T14:58:39.671Z">
+<meta property="article:modified_time" content="2020-12-23T15:00:16.101Z">
+<meta property="article:author" content="guaokuangsheng">
+<meta property="article:tag" content="20级第十二届蓝桥杯第4次周赛">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="人生小谈" rel="home">人生小谈</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">主页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">所有文章</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/tags">tags</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-70" class="post-70 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      捉迷藏
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.harry.org.cn/2020/12/23/70/" data-id="ckj1jrmj5006kxnkjbw3d5s4z" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>内容简介 : 较难</p>
+<ul>
+<li>出题人 : 朱俊老师</li>
+</ul>
+<hr>
+<ul>
+<li>试题内容  —   捉迷藏</li>
+</ul>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一张地图，由小方格组成，平面上的正方形格子被填上黑色或白色。小明站在其中一个方格中。</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入数据的第一行是 m n 两个整数（3 &lt; m, n &lt; 100），表示正方形格子的行数和列数。</p>
+<p>接下来是一行数据：x y s k, 其中x y为整数，表示小明所在行号和列号（行号从上到下增长，列号从左到右增长，都是从0开始编号）。s 是一个大写字母，表示小明头的朝向，我们约定：上下左右分别用：UDLR表示。k 表示小明走的步数。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出数据为两个空格分开的整数 p q, 分别表示小明在k步后，所处格子的行号和列号。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><pre><code>3 3
+0 0 0
+1 1 1
+1 1 1
+1 1 U 6</code></pre><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><pre><code>0 0</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><hr>
+<ul>
+<li>我的代码</li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdio&gt;
+#include&lt;set&gt;
+using namespace std;
+int map[101][101];
+int n, m;
+int sum,shang=0,xia=0,zuo=0,you=0;
+char fh;
+void f(int q1,int q2,int sum,char c)
+{
+    if(sum==0){
+        cout&lt;&lt;q1&lt;&lt;&quot; &quot;&lt;&lt;q2;
+        return;
+    }
+    else{
+        if(map[q1][q2]==1){
+            map[q1][q2]=0;
+            if(c==&#39;U&#39;)
+               f(q1,q2+1,sum-1,&#39;R&#39;);
+            else if(c==&#39;D&#39;)
+                f(q1,q2-1,sum-1,&#39;L&#39;);
+            else if(c==&#39;L&#39;)
+                f(q1-1,q2,sum-1,&#39;U&#39;);
+            else if(c==&#39;R&#39;)
+                f(q1+1,q2,sum-1,&#39;D&#39;);
+        }
+        else
+        {
+            map[q1][q2]=1;
+            if(c==&#39;U&#39;)
+                f(q1,q2-1,sum-1,&#39;L&#39;);
+            else if(c==&#39;D&#39;)
+               f(q1,q2+1,sum-1,&#39;R&#39;);
+            else if(c==&#39;L&#39;)
+                f(q1+1,q2,sum-1,&#39;D&#39;);
+            else if(c==&#39;R&#39;)
+                f(q1-1,q2,sum-1,&#39;U&#39;);
+        }
+    }
+}
+int main()
+{
+    cin&gt;&gt;n&gt;&gt;m;
+    for(int i=0;i&lt;n;i++) for(int j=0;j&lt;m;j++) cin&gt;&gt;map[i][j];
+    int q1,q2;
+    cin&gt;&gt;q1&gt;&gt;q2&gt;&gt;fh&gt;&gt;sum;
+    f(q1,q2,sum,fh);
+    return 0;
+}</code></pre><hr>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2020/12/23/70/">
+    <time datetime="2020-12-23T14:58:39.671Z" class="entry-date">
+        2020-12-23
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a>
+  </div>
+
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第4次周赛</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2020/12/23/71/" rel="prev"><span class="meta-nav">←</span> 机器人</a></span>
+    
+    
+        <span class="nav-next"><a href="/2020/12/20/69/" rel="next">理想超级主板 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80ODY2Ni8yNTE2MA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 --></div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" rel="tag">20级新生选拔天梯赛( 一 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" rel="tag">20级新生选拔天梯赛( 二 )</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第1次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第2次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第3次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" rel="tag">20级第十二届蓝桥杯第4次周赛</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R%E8%AF%AD%E8%A8%80/" rel="tag">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/" rel="tag">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs%E6%90%9C%E7%B4%A2/" rel="tag">dfs搜索</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love%F0%9F%92%97/" rel="tag">love💗</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag">二分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" rel="tag">基础输出算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" rel="tag">斐波那契数列+高精度</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" rel="tag">最大公约数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" rel="tag">模拟进制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" rel="tag">简单循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BF%BB%E5%A2%99/" rel="tag">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" rel="tag">进制转化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%BE%E9%A2%98/" rel="tag">难题</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">tagcloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/mac/" style="font-size: 15px; color: #ad00cc">mac</a> <a href="/tags/git/" style="font-size: 15px; color: #ad00cc">git</a> <a href="/tags/blog/" style="font-size: 13px; color: #90f">blog</a> <a href="/tags/atom/" style="font-size: 13px; color: #90f">atom</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 17px; color: #c20099">递归</a> <a href="/tags/dfs%E6%90%9C%E7%B4%A2/" style="font-size: 19px; color: #d60066">dfs搜索</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19px; color: #d60066">算法</a> <a href="/tags/vpn/" style="font-size: 13px; color: #90f">vpn</a> <a href="/tags/%E7%BF%BB%E5%A2%99/" style="font-size: 13px; color: #90f">翻墙</a> <a href="/tags/love%F0%9F%92%97/" style="font-size: 23px; color: #f00">love💗</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/" style="font-size: 13px; color: #90f">最大公约数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 13px; color: #90f">数论</a> <a href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" style="font-size: 13px; color: #90f">进制转化</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 13px; color: #90f">情感</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px; color: #ad00cc">链表</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">快速排序</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">循环</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 13px; color: #90f">归并排序</a> <a href="/tags/R%E8%AF%AD%E8%A8%80/" style="font-size: 13px; color: #90f">R语言</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%B8%80/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 一 )</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 17px; color: #c20099">基础算法</a> <a href="/tags/js/" style="font-size: 13px; color: #90f">js</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E8%BE%93%E5%87%BA%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">基础输出算法</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 13px; color: #90f">感悟</a> <a href="/tags/%E7%AE%80%E5%8D%95%E5%BE%AA%E7%8E%AF/" style="font-size: 13px; color: #90f">简单循环</a> <a href="/tags/%E6%A8%A1%E6%8B%9F%E8%BF%9B%E5%88%B6/" style="font-size: 13px; color: #90f">模拟进制</a> <a href="/tags/20%E7%BA%A7%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E4%BA%8C/" style="font-size: 21px; color: #eb0033">20级新生选拔天梯赛( 二 )</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13px; color: #90f">模拟</a> <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" style="font-size: 13px; color: #90f">贪心算法</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97-%E9%AB%98%E7%B2%BE%E5%BA%A6/" style="font-size: 13px; color: #90f">斐波那契数列+高精度</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 13px; color: #90f">二分</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC2%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第2次周赛</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC1%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第1次周赛</a> <a href="/tags/%E9%9A%BE%E9%A2%98/" style="font-size: 13px; color: #90f">难题</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC3%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第3次周赛</a> <a href="/tags/20%E7%BA%A7%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%AC%AC4%E6%AC%A1%E5%91%A8%E8%B5%9B/" style="font-size: 17px; color: #c20099">20级第十二届蓝桥杯第4次周赛</a>
+    </div>
+  </div>
+
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Love/">Love</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R%E8%AF%AD%E8%A8%80/">R语言</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%94%9F/">人生</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E8%B7%B5%E9%97%AE%E9%A2%98/">实践问题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/">开发经验技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%B0%E7%94%9F%E9%80%89%E6%8B%94%E8%B5%9B/">新生选拔赛</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%90%86%E8%AE%BA/">理论</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF%E6%A0%A1%E5%86%85%E9%80%89%E6%8B%94%E8%B5%9B/">蓝桥杯校内选拔赛</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/23/72/">统计日期</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/23/71/">机器人</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/23/70/">捉迷藏</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/20/69/">理想超级主板</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/20/68/">英雄找宝剑</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="https://webfs.yun.kugou.com/202002191343/d69b2985af77e2cef58fbd94cd3edcae/G011/M08/01/08/q4YBAFULduiAb4AlAChLgMDVxOg551.mp3" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <p>&copy; 2020 guaokuangsheng
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+    <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
+  </div>
+</body>
+</html>
